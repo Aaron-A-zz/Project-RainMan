@@ -22,6 +22,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var refreshActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var degreeButton: UIButton!
+  
     
     //Daily Weather outlets
     
@@ -168,6 +170,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     func getCurrentWeatherData() -> Void {
         
         
+        
         userLocation = "\(userLatitude),\(userLongitude)"
         
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
@@ -196,7 +199,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 //Test Connection and API with the folllowing
                 //println(currentWeather.temperature)
                 //println(currentWeather.currentTime!)
-                println(weatherDictionary)
+                //println(weatherDictionary)
                 
 
 
@@ -204,6 +207,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     
                     //Current outlook
                     self.temperatureLabel.text = "\(currentWeather.temperature)"
+                    
                     self.iconView.image = currentWeather.icon
                     self.currentTimeLabel.text = "\(currentWeather.currentTime!)"
                     self.humidityLabel.text = "\(currentWeather.humidity)"
@@ -260,6 +264,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     self.refreshActivityIndicator.stopAnimating()
                     self.refreshActivityIndicator.hidden = true
                     self.refreshButton.hidden = false
+                    self.degreeButton.hidden = false
                 })
                 
                 
@@ -282,6 +287,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     self.refreshActivityIndicator.stopAnimating()
                     self.refreshActivityIndicator.hidden = true
                     self.refreshButton.hidden = false
+                    self.degreeButton.hidden = false
                 })
             }
             
@@ -295,16 +301,35 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     @IBAction func refresh() {
         
-        refreshButton.hidden = true
+        degreeButton.hidden = true
         refreshActivityIndicator.hidden = false
         refreshActivityIndicator.startAnimating()
         initLocationManager()
         getCurrentWeatherData()
         
+        self.temperatureLabel.alpha = 0
+        //self.heatIndex.alpha = 0
+        self.dayOneImage.alpha = 0
+        self.dayTwoImage.alpha = 0
+        self.dayThreeImage.alpha = 0
+        self.dayFourImage.alpha = 0
+        self.dayFiveImage.alpha = 0
+        self.daySixImage.alpha = 0
         
+        UIView.animateWithDuration(2.5, animations: {
+            self.temperatureLabel.alpha = 1.0
+            //self.heatIndex.alpha = 1.0
+            self.dayOneImage.alpha = 1.0
+            self.dayTwoImage.alpha = 1.0
+            self.dayThreeImage.alpha = 1.0
+            self.dayFourImage.alpha = 1.0
+            self.dayFiveImage.alpha = 1.0
+            self.daySixImage.alpha = 1.0
+            
+        })
     }
     
-    // HEAT INDEX 
+    // HEAT INDEX
     
         override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
