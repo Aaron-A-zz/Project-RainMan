@@ -215,6 +215,9 @@
                                 <state key="normal" image="degree">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="lMx-3y-pRb" kind="modal" modalTransitionStyle="coverVertical" id="Eec-WE-VKm"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heatindex" translatesAutoresizingMaskIntoConstraints="NO" id="mDw-fv-pWN">
                                 <rect key="frame" x="60" y="317" width="199" height="39"/>
@@ -308,7 +311,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4KZ-eR-wNJ" secondAttribute="bottom" constant="27" id="0bf-F6-PP5"/>
                             <constraint firstAttribute="centerX" secondItem="mTT-7O-mQJ" secondAttribute="centerX" constant="29" id="0ek-aS-TNE"/>
@@ -462,12 +465,58 @@
             </objects>
             <point key="canvasLocation" x="83" y="212"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Zj2-al-mUC">
+            <objects>
+                <viewController id="lMx-3y-pRb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gtf-a5-bbr"/>
+                        <viewControllerLayoutGuide type="bottom" id="5f0-XF-JZd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="28P-av-C9Q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1L-M1-lk5">
+                                <rect key="frame" x="16" y="28" width="34" height="33"/>
+                                <state key="normal" image="backbutton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="modal" modalTransitionStyle="coverVertical" id="4cp-vv-bf2"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logoRainMan" translatesAutoresizingMaskIntoConstraints="NO" id="et1-0L-xQr">
+                                <rect key="frame" x="97" y="77" width="139" height="413"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Powered by Forecast" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVw-T3-qKv">
+                                <rect key="frame" x="79" y="493" width="163" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project RainMan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pos-sg-ZXM">
+                                <rect key="frame" x="97" y="34" width="139" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zen-6t-C3p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="519" y="212"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="backbutton" width="16" height="25"/>
         <image name="cloudy-night" width="134" height="136"/>
         <image name="degree" width="122" height="122"/>
         <image name="heatindex" width="820" height="66"/>
         <image name="humidity" width="41" height="46"/>
+        <image name="logoRainMan" width="451" height="890"/>
         <image name="rain" width="150" height="138"/>
         <image name="umbrella" width="120" height="110"/>
         <image name="windbag" width="112" height="108"/>

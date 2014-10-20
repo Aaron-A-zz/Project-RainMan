@@ -13,19 +13,19 @@
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RainMan" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
                     <rect key="frame" x="381" y="387" width="72" height="22.5"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
-                    <color key="textColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteumbrella" translatesAutoresizingMaskIntoConstraints="NO" id="qq1-9F-9zp">
-                    <rect key="frame" x="190" y="190" width="100" height="100"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoRainMan" translatesAutoresizingMaskIntoConstraints="NO" id="qq1-9F-9zp">
+                    <rect key="frame" x="155" y="117" width="171" height="246"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="Sth-gk-o02"/>
-                        <constraint firstAttribute="height" constant="100" id="aX1-6x-B2B"/>
+                        <constraint firstAttribute="width" constant="171" id="Sth-gk-o02"/>
+                        <constraint firstAttribute="height" constant="246" id="aX1-6x-B2B"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URE-TC-6QE">
-                    <rect key="frame" x="397.5" y="364.5" width="39.5" height="14.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <rect key="frame" x="381" y="362" width="58" height="23"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                     <color key="textColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -34,9 +34,9 @@
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="qq1-9F-9zp" secondAttribute="centerX" id="2Ft-M9-aTL"/>
                 <constraint firstAttribute="bottom" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="70" id="FBX-b3-pBh"/>
-                <constraint firstAttribute="trailing" secondItem="URE-TC-6QE" secondAttribute="trailing" constant="43" id="RH1-yZ-Y3S"/>
+                <constraint firstAttribute="trailing" secondItem="URE-TC-6QE" secondAttribute="trailing" constant="41" id="RH1-yZ-Y3S"/>
                 <constraint firstAttribute="trailing" secondItem="kId-c2-rCX" secondAttribute="trailing" constant="27" id="Vxc-36-Zxx"/>
-                <constraint firstAttribute="bottom" secondItem="URE-TC-6QE" secondAttribute="bottom" constant="101" id="Y5l-v8-Wxg"/>
+                <constraint firstAttribute="bottom" secondItem="URE-TC-6QE" secondAttribute="bottom" constant="95" id="Y5l-v8-Wxg"/>
                 <constraint firstAttribute="centerY" secondItem="qq1-9F-9zp" secondAttribute="centerY" id="fHl-PP-epJ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -45,6 +45,6 @@
         </view>
     </objects>
     <resources>
-        <image name="whiteumbrella" width="120" height="110"/>
+        <image name="logoRainMan" width="451" height="890"/>
     </resources>
 </document>

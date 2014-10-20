@@ -180,6 +180,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         //72.371224,-41.382676 GreenLand (Cold Place!)
         //\(userLocation) (YOUR LOCATION!)
         
+        //println(userLocation)
 
         
         let sharedSession = NSURLSession.sharedSession()
