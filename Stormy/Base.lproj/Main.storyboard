@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -310,6 +310,9 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IpF-Mv-AXT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -456,6 +459,7 @@
                         <outlet property="refreshActivityIndicator" destination="JT3-qI-fw0" id="Rwf-VV-M4u"/>
                         <outlet property="refreshButton" destination="x5Q-nd-hFw" id="gn0-Fo-aFA"/>
                         <outlet property="summaryLabel" destination="eNl-M7-Ood" id="dXX-1R-S1X"/>
+                        <outlet property="swipeView" destination="IpF-Mv-AXT" id="20d-z3-tDk"/>
                         <outlet property="temperatureLabel" destination="kJ0-p5-bTb" id="60g-G6-ZXh"/>
                         <outlet property="userLocationLabel" destination="NXl-D1-7dW" id="Z5b-GX-JjR"/>
                         <outlet property="windSpeedLabel" destination="zfV-7Z-X3D" id="oUK-IA-EXY"/>

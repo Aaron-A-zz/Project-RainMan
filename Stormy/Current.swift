@@ -84,7 +84,7 @@ func weatherIconFromString(stringIcon: String) -> UIImage {
     }
     
     var iconImage = UIImage(named: imageName)
-    return iconImage
+    return iconImage!
     
 }
 

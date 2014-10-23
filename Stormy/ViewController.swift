@@ -23,7 +23,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var refreshActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var degreeButton: UIButton!
-  
+    @IBOutlet weak var swipeView: UIView!
+    let swipeRec = UISwipeGestureRecognizer()
     
     //Daily Weather outlets
     
@@ -72,10 +73,19 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view, typically from a nib.
+        swipeRec.addTarget(self, action: "swipedView")
+        swipeRec.direction = UISwipeGestureRecognizerDirection.Up
+        swipeView.addGestureRecognizer(swipeRec)
+        
         initLocationManager()
         
     }
     
+    
+    func swipedView(){
+        
+        refresh()
+    }
     
     //LOCATION LOCATION LOCATION 
     
@@ -185,13 +195,13 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         let sharedSession = NSURLSession.sharedSession()
         
-        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL, completionHandler: { (location: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
+        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
             
             
             if (error == nil) {
                 
                 let dataObject = NSData(contentsOfURL: location)
-                let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject, options: nil, error: nil) as NSDictionary
+                let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject!, options: nil, error: nil) as NSDictionary
                 
                 let currentWeather = Current(weatherDictionary:weatherDictionary)
                 
