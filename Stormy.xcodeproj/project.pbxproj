@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2101985919E023BF00AF808C /* Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101985819E023BF00AF808C /* Current.swift */; };
+		210748D719FBBB36003B04C8 /* SpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210748D619FBBB36003B04C8 /* SpringAnimation.swift */; };
 		218C583C19D86BA20054DBD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C583B19D86BA20054DBD0 /* AppDelegate.swift */; };
 		218C583E19D86BA20054DBD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C583D19D86BA20054DBD0 /* ViewController.swift */; };
 		218C584119D86BA20054DBD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 218C583F19D86BA20054DBD0 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		2101985819E023BF00AF808C /* Current.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Current.swift; sourceTree = "<group>"; };
+		210748D619FBBB36003B04C8 /* SpringAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringAnimation.swift; sourceTree = "<group>"; };
 		218C583619D86BA20054DBD0 /* Stormy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stormy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218C583A19D86BA20054DBD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		218C583B19D86BA20054DBD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				218C583D19D86BA20054DBD0 /* ViewController.swift */,
 				2101985819E023BF00AF808C /* Current.swift */,
 				21A8EAE519EA00B900768A42 /* Weekly.swift */,
+				210748D619FBBB36003B04C8 /* SpringAnimation.swift */,
 				218C583F19D86BA20054DBD0 /* Main.storyboard */,
 				218C584219D86BA20054DBD0 /* Images.xcassets */,
 				218C584419D86BA20054DBD0 /* LaunchScreen.xib */,
@@ -224,6 +227,7 @@
 			files = (
 				21A8EAE619EA00BA00768A42 /* Weekly.swift in Sources */,
 				2101985919E023BF00AF808C /* Current.swift in Sources */,
+				210748D719FBBB36003B04C8 /* SpringAnimation.swift in Sources */,
 				218C583E19D86BA20054DBD0 /* ViewController.swift in Sources */,
 				218C583C19D86BA20054DBD0 /* AppDelegate.swift in Sources */,
 			);

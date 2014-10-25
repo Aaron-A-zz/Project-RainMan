@@ -28,7 +28,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     //Daily Weather outlets
     
-    
     @IBOutlet weak var dayZeroTemperatureLowLabel: UILabel!
     @IBOutlet weak var dayZeroTemperatureHighLabel: UILabel!
     
@@ -74,7 +73,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
 
         // Do any additional setup after loading the view, typically from a nib.
         swipeRec.addTarget(self, action: "swipedView")
-        swipeRec.direction = UISwipeGestureRecognizerDirection.Up
+        swipeRec.direction = UISwipeGestureRecognizerDirection.Down
         swipeView.addGestureRecognizer(swipeRec)
         
         initLocationManager()
@@ -179,8 +178,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     func getCurrentWeatherData() -> Void {
         
-        
-        
         userLocation = "\(userLatitude),\(userLongitude)"
         
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
@@ -211,12 +208,10 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 //println(currentWeather.temperature)
                 //println(currentWeather.currentTime!)
                 //println(weatherDictionary)
-                
-
 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
-                    //Current outlook
+                //Current outlook
                     self.temperatureLabel.text = "\(currentWeather.temperature)"
                     
                     self.iconView.image = currentWeather.icon
@@ -229,7 +224,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     self.dayZeroTemperatureHighLabel.text = "\(weeklyWeather.dayZeroTemperatureMax)"
                     self.dayZeroTemperatureLowLabel.text = "\(weeklyWeather.dayZeroTemperatureMin)"
                     
-                    //HEAT INDEX
+                //HEAT INDEX
                     
                     if currentWeather.temperature < 60 {
                             self.heatIndex.image = UIImage(named: "heatindexWinter")
@@ -243,7 +238,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     }
                     
                     
-                    //7 day out look
+                //7 day out look
                     
                     self.dayOneWeekDayLabel.text = "\(weeklyWeather.dayOneTime!)"
                     self.dayOneHighLow.text = "\(weeklyWeather.dayOneTemperatureMin)°/ \(weeklyWeather.dayOneTemperatureMax)°"
@@ -271,7 +266,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     
                     
                     
-                    //Stop refresh
+                //Stop refresh
                     self.refreshActivityIndicator.stopAnimating()
                     self.refreshActivityIndicator.hidden = true
                     self.refreshButton.hidden = false
@@ -282,19 +277,16 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
             } else {
                 
                 let networkIssueController = UIAlertController(title: "Error", message: "Unable to load data. Connectivity error!", preferredStyle: .Alert)
-                
                 let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 networkIssueController.addAction(okButton)
-                
                 let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
                 networkIssueController.addAction(cancelButton)
-                
                 self.presentViewController(networkIssueController, animated: true, completion: nil)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
                     
-                    //Stop refresh animation
+                //Stop refresh animation
                     self.refreshActivityIndicator.stopAnimating()
                     self.refreshActivityIndicator.hidden = true
                     self.refreshButton.hidden = false
@@ -328,19 +320,62 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.daySixImage.alpha = 0
         
         UIView.animateWithDuration(2.5, animations: {
-            self.temperatureLabel.alpha = 1.0
-            //self.heatIndex.alpha = 1.0
-            self.dayOneImage.alpha = 1.0
-            self.dayTwoImage.alpha = 1.0
-            self.dayThreeImage.alpha = 1.0
-            self.dayFourImage.alpha = 1.0
-            self.dayFiveImage.alpha = 1.0
-            self.daySixImage.alpha = 1.0
+        self.temperatureLabel.alpha = 1.0
+        //self.heatIndex.alpha = 1.0
+        self.dayOneImage.alpha = 1.0
+        self.dayTwoImage.alpha = 1.0
+        self.dayThreeImage.alpha = 1.0
+        self.dayFourImage.alpha = 1.0
+        self.dayFiveImage.alpha = 1.0
+        self.daySixImage.alpha = 1.0
+        
+        //Spring Animation
+        self.weeklyForcastAnimation()
+            
             
         })
     }
     
-    // HEAT INDEX
+    
+    func weeklyForcastAnimation() {
+        
+        self.dayOneImage.transform = CGAffineTransformMakeTranslation(200, 0)
+        
+        springWithDelay(0.5, 0.20, {
+            self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        self.dayTwoImage.transform = CGAffineTransformMakeTranslation(200, 0)
+        
+        springWithDelay(0.5, 0.20, {
+            self.dayTwoImage.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        self.dayThreeImage.transform = CGAffineTransformMakeTranslation(200, 0)
+        
+        springWithDelay(0.5, 0.20, {
+            self.dayThreeImage.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        self.dayFourImage.transform = CGAffineTransformMakeTranslation(200, 0)
+        
+        springWithDelay(0.5, 0.20, {
+            self.dayFourImage.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        self.dayFiveImage.transform = CGAffineTransformMakeTranslation(200, 0)
+        
+        springWithDelay(0.5, 0.20, {
+            self.dayFiveImage.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        self.daySixImage.transform = CGAffineTransformMakeTranslation(200, 0)
+        
+        springWithDelay(0.5, 0.20, {
+            self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+
+    }
     
         override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
