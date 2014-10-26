@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import CoreLocation
 
 class ViewController: UIViewController,CLLocationManagerDelegate {
@@ -25,11 +26,10 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var precipitationLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
-
     @IBOutlet weak var refreshActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var degreeButton: UIButton!
     @IBOutlet weak var swipeView: UIView!
-    
+    @IBOutlet weak var heatIndex: UIImageView!
     
     //Daily Weather outlets
     
@@ -60,7 +60,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var daySixHighLow: UILabel!
     @IBOutlet weak var daySixImage: UIImageView!
     
-    @IBOutlet weak var heatIndex: UIImageView!
+
     
     var seenError : Bool = false
     var locationFixAchieved : Bool = false
@@ -71,6 +71,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     var userLongitude : Double!
     
     private let apiKey = "a6f8ab161b1f8680ad2a474ec055d69e"
+    
+    var audioPlayer = AVAudioPlayer()
 
     override func viewDidLoad() {
         
@@ -88,7 +90,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     func swipedView(){
         
+        self.swooshsound()
         refresh()
+        
     }
     
     //LOCATION LOCATION LOCATION 
@@ -305,7 +309,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     }
     
     
-    @IBAction func refresh() {
+     func refresh() {
+        
         
         degreeButton.hidden = true
         refreshActivityIndicator.hidden = false
@@ -334,12 +339,12 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
             self.dayFiveImage.alpha = 1.0
             self.daySixImage.alpha = 1.0
             
-            
         })
     }
     
     
     func weeklyForcastAnimation() {
+        
         
         //DAILY
         self.windBag.transform = CGAffineTransformMakeTranslation(0, -600)
@@ -348,7 +353,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.iconView.transform = CGAffineTransformMakeTranslation(-200, 0)
         self.temperatureLabel.transform = CGAffineTransformMakeTranslation(200, 0)
         self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, -200)
-        self.heatIndex.transform = CGAffineTransformMakeTranslation(-310, 0)
+        self.heatIndex.transform = CGAffineTransformMakeTranslation(-350, 0)
         
         //WEEKLY
         self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 100)
@@ -358,7 +363,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.dayFiveImage.transform = CGAffineTransformMakeTranslation(0, 100)
         self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 100)
         
-        //DAILY
+        //DAILY SPRING ACTION
         springWithDelay(0.9, 0.15, {
             self.windBag.transform = CGAffineTransformMakeTranslation(0, 0)
         })
@@ -385,31 +390,80 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         })
         
         
-        //WEEKLY FORCAST
-        springWithDelay(0.9, 0.20, {
+        //WEEKLY FORCAST SPRING ACTION
+        springWithDelay(0.5, 0.15, {
             self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.30, {
+        springWithDelay(0.5, 0.25, {
             self.dayTwoImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.40, {
+        springWithDelay(0.5, 0.35, {
             self.dayThreeImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.50, {
+        springWithDelay(0.5, 0.45, {
             self.dayFourImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.60, {
+        springWithDelay(0.5, 0.55, {
             self.dayFiveImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.70, {
+        springWithDelay(0.5, 0.65, {
             self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 0)
+          
         })
 
+    }
+    
+    
+    @IBAction func degreeButtonPressed(sender: AnyObject) {
+        
+        self.popsound()
+        
+    }
+    
+    //SOUNDS
+    
+    func swooshsound() {
+        
+        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("swoosh", ofType: "wav")!)
+        println(alertSound)
+        
+        var error:NSError?
+        audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
+        
+
+    }
+    
+    func popsound() {
+        
+        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("popit", ofType: "wav")!)
+        println(alertSound)
+        
+        var error:NSError?
+        audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
+        
+        
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "second"{
+            
+            let myDestVC = segue.destinationViewController as InfoTabViewController
+          
+            
+        }
+        
+        
     }
     
         override func didReceiveMemoryWarning() {
@@ -418,6 +472,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
             
     }
 
-
+    
 }
 

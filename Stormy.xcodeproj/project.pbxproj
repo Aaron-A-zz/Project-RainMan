@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		2101985919E023BF00AF808C /* Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101985819E023BF00AF808C /* Current.swift */; };
 		210748D719FBBB36003B04C8 /* SpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210748D619FBBB36003B04C8 /* SpringAnimation.swift */; };
-		211FC49E19FD0FBC007C5FB0 /* InfoTabe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211FC49D19FD0FBC007C5FB0 /* InfoTabe.swift */; };
 		218C583C19D86BA20054DBD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C583B19D86BA20054DBD0 /* AppDelegate.swift */; };
 		218C583E19D86BA20054DBD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C583D19D86BA20054DBD0 /* ViewController.swift */; };
 		218C584119D86BA20054DBD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 218C583F19D86BA20054DBD0 /* Main.storyboard */; };
 		218C584319D86BA20054DBD0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218C584219D86BA20054DBD0 /* Images.xcassets */; };
 		218C584619D86BA20054DBD0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218C584419D86BA20054DBD0 /* LaunchScreen.xib */; };
 		218C585219D86BA30054DBD0 /* StormyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C585119D86BA30054DBD0 /* StormyTests.swift */; };
+		219920DD19FD1977008ABF65 /* InfoTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219920DC19FD1977008ABF65 /* InfoTabViewController.swift */; };
+		2199210F19FD884D008ABF65 /* swoosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2199210E19FD884D008ABF65 /* swoosh.wav */; };
+		2199211119FD9A4A008ABF65 /* popit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2199211019FD9A4A008ABF65 /* popit.wav */; };
 		21A8EAE619EA00BA00768A42 /* Weekly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8EAE519EA00B900768A42 /* Weekly.swift */; };
 		21F6775B19E1EFD000575B1B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6775A19E1EFD000575B1B /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -33,7 +35,6 @@
 /* Begin PBXFileReference section */
 		2101985819E023BF00AF808C /* Current.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Current.swift; sourceTree = "<group>"; };
 		210748D619FBBB36003B04C8 /* SpringAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringAnimation.swift; sourceTree = "<group>"; };
-		211FC49D19FD0FBC007C5FB0 /* InfoTabe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTabe.swift; sourceTree = "<group>"; };
 		218C583619D86BA20054DBD0 /* Stormy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stormy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218C583A19D86BA20054DBD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		218C583B19D86BA20054DBD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +45,9 @@
 		218C584B19D86BA30054DBD0 /* StormyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StormyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		218C585019D86BA30054DBD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		218C585119D86BA30054DBD0 /* StormyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormyTests.swift; sourceTree = "<group>"; };
+		219920DC19FD1977008ABF65 /* InfoTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTabViewController.swift; sourceTree = "<group>"; };
+		2199210E19FD884D008ABF65 /* swoosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = swoosh.wav; sourceTree = "<group>"; };
+		2199211019FD9A4A008ABF65 /* popit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = popit.wav; sourceTree = "<group>"; };
 		21A8EAE519EA00B900768A42 /* Weekly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weekly.swift; sourceTree = "<group>"; };
 		21F6775A19E1EFD000575B1B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -89,7 +93,9 @@
 		218C583819D86BA20054DBD0 /* Stormy */ = {
 			isa = PBXGroup;
 			children = (
-				211FC49D19FD0FBC007C5FB0 /* InfoTabe.swift */,
+				2199211019FD9A4A008ABF65 /* popit.wav */,
+				2199210E19FD884D008ABF65 /* swoosh.wav */,
+				219920DC19FD1977008ABF65 /* InfoTabViewController.swift */,
 				218C583B19D86BA20054DBD0 /* AppDelegate.swift */,
 				218C583D19D86BA20054DBD0 /* ViewController.swift */,
 				2101985819E023BF00AF808C /* Current.swift */,
@@ -209,7 +215,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				218C584119D86BA20054DBD0 /* Main.storyboard in Resources */,
+				2199210F19FD884D008ABF65 /* swoosh.wav in Resources */,
 				218C584619D86BA20054DBD0 /* LaunchScreen.xib in Resources */,
+				2199211119FD9A4A008ABF65 /* popit.wav in Resources */,
 				218C584319D86BA20054DBD0 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,8 +238,8 @@
 			files = (
 				21A8EAE619EA00BA00768A42 /* Weekly.swift in Sources */,
 				2101985919E023BF00AF808C /* Current.swift in Sources */,
+				219920DD19FD1977008ABF65 /* InfoTabViewController.swift in Sources */,
 				210748D719FBBB36003B04C8 /* SpringAnimation.swift in Sources */,
-				211FC49E19FD0FBC007C5FB0 /* InfoTabe.swift in Sources */,
 				218C583E19D86BA20054DBD0 /* ViewController.swift in Sources */,
 				218C583C19D86BA20054DBD0 /* AppDelegate.swift in Sources */,
 			);
