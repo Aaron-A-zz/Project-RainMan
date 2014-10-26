@@ -300,7 +300,7 @@
                                 </state>
                                 <connections>
                                     <action selector="degreeButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nVF-oI-WI2"/>
-                                    <segue destination="lMx-3y-pRb" kind="modal" identifier="second" id="GQO-vV-rpn"/>
+                                    <segue destination="lMx-3y-pRb" kind="modal" identifier="infotab" id="GQO-vV-rpn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -477,6 +477,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="backButtonPressed:" destination="lMx-3y-pRb" eventType="touchUpInside" id="GPZ-ya-Lw4"/>
                                     <segue destination="vXZ-lx-hvc" kind="modal" identifier="backtomain" id="nXv-hT-gQH"/>
                                 </connections>
                             </button>
@@ -500,6 +501,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="yIf-A8-3SZ"/>
                     <connections>
+                        <outlet property="backButton" destination="b1L-M1-lk5" id="Reh-3O-de6"/>
                         <outlet property="forecast" destination="yVw-T3-qKv" id="kMv-j0-AL1"/>
                         <outlet property="projectName" destination="pos-sg-ZXM" id="rFJ-2T-BEM"/>
                         <outlet property="thermometer" destination="et1-0L-xQr" id="j92-gh-WSb"/>

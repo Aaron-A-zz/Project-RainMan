@@ -456,10 +456,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "second"{
-            
-            let myDestVC = segue.destinationViewController as InfoTabViewController
-          
+        if segue.identifier == "infotab"{
+            let vc = segue.destinationViewController as InfoTabViewController
             
         }
         

@@ -14,6 +14,7 @@ class InfoTabViewController: UIViewController {
     @IBOutlet weak var thermometer: UIImageView!
     @IBOutlet weak var projectName: UILabel!
     @IBOutlet weak var forecast: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     
      var audioPlayer = AVAudioPlayer()
     
@@ -43,6 +44,13 @@ class InfoTabViewController: UIViewController {
         springWithDelay(0.9, 0.50, {
             self.forecast.transform = CGAffineTransformMakeTranslation(0, 0)
         })
+    }
+    
+    
+
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        
+        self.popsound()
     }
     
     
