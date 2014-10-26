@@ -11,7 +11,12 @@ import CoreLocation
 
 class ViewController: UIViewController,CLLocationManagerDelegate {
     
+    let swipeRec = UISwipeGestureRecognizer()
+    
     //Current Weather outlets
+    @IBOutlet weak var windBag: UIImageView!
+    @IBOutlet weak var umbrella: UIImageView!
+    @IBOutlet weak var rainDrop: UIImageView!
     @IBOutlet weak var userLocationLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var currentTimeLabel: UILabel!
@@ -20,11 +25,11 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var precipitationLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
-    @IBOutlet weak var refreshButton: UIButton!
+
     @IBOutlet weak var refreshActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var degreeButton: UIButton!
     @IBOutlet weak var swipeView: UIView!
-    let swipeRec = UISwipeGestureRecognizer()
+    
     
     //Daily Weather outlets
     
@@ -269,7 +274,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 //Stop refresh
                     self.refreshActivityIndicator.stopAnimating()
                     self.refreshActivityIndicator.hidden = true
-                    self.refreshButton.hidden = false
                     self.degreeButton.hidden = false
                 })
                 
@@ -289,7 +293,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 //Stop refresh animation
                     self.refreshActivityIndicator.stopAnimating()
                     self.refreshActivityIndicator.hidden = true
-                    self.refreshButton.hidden = false
                     self.degreeButton.hidden = false
                 })
             }
@@ -319,18 +322,17 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.dayFiveImage.alpha = 0
         self.daySixImage.alpha = 0
         
-        UIView.animateWithDuration(2.5, animations: {
-        self.temperatureLabel.alpha = 1.0
-        //self.heatIndex.alpha = 1.0
-        self.dayOneImage.alpha = 1.0
-        self.dayTwoImage.alpha = 1.0
-        self.dayThreeImage.alpha = 1.0
-        self.dayFourImage.alpha = 1.0
-        self.dayFiveImage.alpha = 1.0
-        self.daySixImage.alpha = 1.0
-        
-        //Spring Animation
         self.weeklyForcastAnimation()
+        
+        UIView.animateWithDuration(2.5, animations: {
+            self.temperatureLabel.alpha = 1.0
+            //self.heatIndex.alpha = 1.0
+            self.dayOneImage.alpha = 1.0
+            self.dayTwoImage.alpha = 1.0
+            self.dayThreeImage.alpha = 1.0
+            self.dayFourImage.alpha = 1.0
+            self.dayFiveImage.alpha = 1.0
+            self.daySixImage.alpha = 1.0
             
             
         })
@@ -339,39 +341,72 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     func weeklyForcastAnimation() {
         
-        self.dayOneImage.transform = CGAffineTransformMakeTranslation(200, 0)
+        //DAILY
+        self.windBag.transform = CGAffineTransformMakeTranslation(0, -600)
+        self.umbrella.transform = CGAffineTransformMakeTranslation(0, -600)
+        self.rainDrop.transform = CGAffineTransformMakeTranslation(0, -600)
+        self.iconView.transform = CGAffineTransformMakeTranslation(-200, 0)
+        self.temperatureLabel.transform = CGAffineTransformMakeTranslation(200, 0)
+        self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, -200)
+        self.heatIndex.transform = CGAffineTransformMakeTranslation(-310, 0)
         
-        springWithDelay(0.5, 0.20, {
+        //WEEKLY
+        self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 100)
+        self.dayTwoImage.transform = CGAffineTransformMakeTranslation(0, 100)
+        self.dayThreeImage.transform = CGAffineTransformMakeTranslation(0, 100)
+        self.dayFourImage.transform = CGAffineTransformMakeTranslation(0, 100)
+        self.dayFiveImage.transform = CGAffineTransformMakeTranslation(0, 100)
+        self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 100)
+        
+        //DAILY
+        springWithDelay(0.9, 0.15, {
+            self.windBag.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        springWithDelay(0.9, 0.35, {
+            self.umbrella.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        springWithDelay(0.9, 0.45, {
+            self.rainDrop.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        springWithDelay(0.9, 0.45, {
+            self.iconView.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        springWithDelay(0.9, 0.45, {
+            self.temperatureLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        springWithDelay(0.9, 0.45, {
+            self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        springWithDelay(0.9, 0.45, {
+            self.heatIndex.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        
+        //WEEKLY FORCAST
+        springWithDelay(0.9, 0.20, {
             self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        self.dayTwoImage.transform = CGAffineTransformMakeTranslation(200, 0)
-        
-        springWithDelay(0.5, 0.20, {
+        springWithDelay(0.9, 0.30, {
             self.dayTwoImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        self.dayThreeImage.transform = CGAffineTransformMakeTranslation(200, 0)
-        
-        springWithDelay(0.5, 0.20, {
+        springWithDelay(0.9, 0.40, {
             self.dayThreeImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        self.dayFourImage.transform = CGAffineTransformMakeTranslation(200, 0)
-        
-        springWithDelay(0.5, 0.20, {
+        springWithDelay(0.9, 0.50, {
             self.dayFourImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        self.dayFiveImage.transform = CGAffineTransformMakeTranslation(200, 0)
-        
-        springWithDelay(0.5, 0.20, {
+        springWithDelay(0.9, 0.60, {
             self.dayFiveImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        self.daySixImage.transform = CGAffineTransformMakeTranslation(200, 0)
-        
-        springWithDelay(0.5, 0.20, {
+        springWithDelay(0.9, 0.70, {
             self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
 
