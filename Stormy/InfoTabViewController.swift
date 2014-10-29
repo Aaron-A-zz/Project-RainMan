@@ -31,7 +31,7 @@ class InfoTabViewController: UIViewController {
     
     func infoAnimation() {
         
-        self.thermometer.transform = CGAffineTransformMakeTranslation(200, 100)
+        self.thermometer.transform = CGAffineTransformMakeTranslation(0, 1000)
         self.projectName.transform = CGAffineTransformMakeTranslation(0, 100)
         self.forecast.transform = CGAffineTransformMakeTranslation(0, 100)
         

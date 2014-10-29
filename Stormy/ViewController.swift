@@ -351,9 +351,13 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.umbrella.transform = CGAffineTransformMakeTranslation(0, -600)
         self.rainDrop.transform = CGAffineTransformMakeTranslation(0, -600)
         self.iconView.transform = CGAffineTransformMakeTranslation(-200, 0)
-        self.temperatureLabel.transform = CGAffineTransformMakeTranslation(200, 0)
+        self.temperatureLabel.transform = CGAffineTransformMakeTranslation(300, 0)
         self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, -200)
         self.heatIndex.transform = CGAffineTransformMakeTranslation(-350, 0)
+        self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(350,0)
+        self.userLocationLabel.transform = CGAffineTransformMakeTranslation(-350,0)
+        self.degreeButton.transform = CGAffineTransformMakeTranslation(350,0)
+        
         
         //WEEKLY
         self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 100)
@@ -364,7 +368,18 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 100)
         
         //DAILY SPRING ACTION
-        springWithDelay(0.9, 0.15, {
+        springWithDelay(0.9, 0.45, {
+            self.userLocationLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        springWithDelay(0.9, 0.45, {
+            self.degreeButton.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+
+        springWithDelay(0.9, 0.45, {
+            self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+
+        springWithDelay(0.9, 0.25, {
             self.windBag.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         springWithDelay(0.9, 0.35, {
@@ -391,27 +406,27 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         
         //WEEKLY FORCAST SPRING ACTION
-        springWithDelay(0.5, 0.15, {
+        springWithDelay(0.9, 0.25, {
             self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.5, 0.25, {
+        springWithDelay(0.9, 0.35, {
             self.dayTwoImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.5, 0.35, {
+        springWithDelay(0.9, 0.45, {
             self.dayThreeImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.5, 0.45, {
+        springWithDelay(0.9, 0.55, {
             self.dayFourImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.5, 0.55, {
+        springWithDelay(0.9, 0.65, {
             self.dayFiveImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.5, 0.65, {
+        springWithDelay(0.9, 0.75, {
             self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 0)
           
         })

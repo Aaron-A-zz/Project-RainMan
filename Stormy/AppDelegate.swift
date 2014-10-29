@@ -12,13 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+   
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+       
+
         
         application.setStatusBarHidden(true, withAnimation: .None)
         
-        
+        //sleep(5);
         // Override point for customization after application launch.
         return true
     }
