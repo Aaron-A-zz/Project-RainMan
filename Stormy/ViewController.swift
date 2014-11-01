@@ -20,7 +20,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var rainDrop: UIImageView!
     @IBOutlet weak var userLocationLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var currentTimeLabel: UILabel!
+    //@IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var precipitationLabel: UILabel!
@@ -30,11 +30,17 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var degreeButton: UIButton!
     @IBOutlet weak var swipeView: UIView!
     @IBOutlet weak var heatIndex: UIImageView!
-    
-    //Daily Weather outlets
-    
     @IBOutlet weak var dayZeroTemperatureLowLabel: UILabel!
     @IBOutlet weak var dayZeroTemperatureHighLabel: UILabel!
+    
+    @IBOutlet weak var windUILabel: UILabel!
+    @IBOutlet weak var rainUILabel: UILabel!
+    @IBOutlet weak var humidityUILabel: UILabel!
+    
+    
+    //Daily Weather outlets
+    @IBOutlet weak var dayZeroTemperatureLow: UILabel!
+    @IBOutlet weak var dayZeroTemperatureHigh: UILabel!
     
     @IBOutlet weak var dayOneWeekDayLabel: UILabel!
     @IBOutlet weak var dayOneHighLow: UILabel!
@@ -224,21 +230,21 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     self.temperatureLabel.text = "\(currentWeather.temperature)"
                     
                     self.iconView.image = currentWeather.icon
-                    self.currentTimeLabel.text = "\(currentWeather.currentTime!)"
+                    //self.currentTimeLabel.text = "\(currentWeather.currentTime!)"
                     self.humidityLabel.text = "\(currentWeather.humidity)"
                     self.precipitationLabel.text = "\(currentWeather.precipProbability)"
                     self.summaryLabel.text = "\(currentWeather.summary)"
                     self.windSpeedLabel.text = "\(currentWeather.windSpeed)"
                     
-                    self.dayZeroTemperatureHighLabel.text = "\(weeklyWeather.dayZeroTemperatureMax)"
-                    self.dayZeroTemperatureLowLabel.text = "\(weeklyWeather.dayZeroTemperatureMin)"
+                    self.dayZeroTemperatureHigh.text = "\(weeklyWeather.dayZeroTemperatureMax)"
+                    self.dayZeroTemperatureLow.text = "\(weeklyWeather.dayZeroTemperatureMin)"
                     
                 //HEAT INDEX
                     
                     if currentWeather.temperature < 60 {
                             self.heatIndex.image = UIImage(named: "heatindexWinter")
-                            self.dayZeroTemperatureLowLabel.textColor = UIColor(red: 0/255.0, green: 121/255.0, blue: 255/255.0, alpha: 1.0)
-                        self.dayZeroTemperatureHighLabel.textColor = UIColor(red: 245/255.0, green: 6/255.0, blue: 93/255.0, alpha: 1.0)
+                            self.dayZeroTemperatureLow.textColor = UIColor(red: 0/255.0, green: 121/255.0, blue: 255/255.0, alpha: 1.0)
+                        self.dayZeroTemperatureHigh.textColor = UIColor(red: 245/255.0, green: 6/255.0, blue: 93/255.0, alpha: 1.0)
 
                         
                     } else {
@@ -326,18 +332,54 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.dayFourImage.alpha = 0
         self.dayFiveImage.alpha = 0
         self.daySixImage.alpha = 0
+        self.dayZeroTemperatureLow.alpha = 0
+        self.dayZeroTemperatureHigh.alpha = 0
+        self.windSpeedLabel.alpha = 0
+        self.humidityLabel.alpha = 0
+        self.precipitationLabel.alpha = 0
+        self.rainUILabel.alpha = 0
+        self.dayOneWeekDayLabel.alpha = 0
+        self.dayOneHighLow.alpha = 0
+        self.dayTwoWeekDayLabel.alpha = 0
+        self.dayTwoHighLow.alpha = 0
+        self.dayThreeWeekDayLabel.alpha = 0
+        self.dayThreeHighLow.alpha = 0
+        self.dayFourWeekDayLabel.alpha = 0
+        self.dayFourHighLow.alpha = 0
+        self.dayFiveWeekDayLabel.alpha = 0
+        self.dayFiveHighLow.alpha = 0
+        self.daySixWeekDayLabel.alpha = 0
+        self.daySixHighLow.alpha = 0
         
         self.weeklyForcastAnimation()
         
-        UIView.animateWithDuration(2.5, animations: {
-            self.temperatureLabel.alpha = 1.0
-            //self.heatIndex.alpha = 1.0
-            self.dayOneImage.alpha = 1.0
-            self.dayTwoImage.alpha = 1.0
-            self.dayThreeImage.alpha = 1.0
-            self.dayFourImage.alpha = 1.0
-            self.dayFiveImage.alpha = 1.0
-            self.daySixImage.alpha = 1.0
+        UIView.animateWithDuration(1.5, animations: {
+        self.temperatureLabel.alpha = 1.0
+        self.heatIndex.alpha = 1.0
+        self.dayOneImage.alpha = 1.0
+        self.dayTwoImage.alpha = 1.0
+        self.dayThreeImage.alpha = 1.0
+        self.dayFourImage.alpha = 1.0
+        self.dayFiveImage.alpha = 1.0
+        self.daySixImage.alpha = 1.0
+        self.dayZeroTemperatureLow.alpha = 1.0
+        self.dayZeroTemperatureHigh.alpha = 1.0
+        self.windSpeedLabel.alpha = 1.0
+        self.humidityLabel.alpha = 1.0
+        self.precipitationLabel.alpha = 1.0
+        self.rainUILabel.alpha = 1.0
+        self.dayOneWeekDayLabel.alpha = 1.0
+        self.dayOneHighLow.alpha = 1.0
+        self.dayTwoWeekDayLabel.alpha = 1.0
+        self.dayTwoHighLow.alpha = 1.0
+        self.dayThreeWeekDayLabel.alpha = 1.0
+        self.dayThreeHighLow.alpha = 1.0
+        self.dayFourWeekDayLabel.alpha = 1.0
+        self.dayFourHighLow.alpha = 1.0
+        self.dayFiveWeekDayLabel.alpha = 1.0
+        self.dayFiveHighLow.alpha = 1.0
+        self.daySixWeekDayLabel.alpha = 1.0
+        self.daySixHighLow.alpha = 1.0
             
         })
     }
@@ -347,6 +389,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         
         //DAILY
+        self.dayZeroTemperatureLowLabel.transform = CGAffineTransformMakeTranslation(-300, 0)
+        self.dayZeroTemperatureHighLabel.transform = CGAffineTransformMakeTranslation(300, 0)
         self.windBag.transform = CGAffineTransformMakeTranslation(0, -600)
         self.umbrella.transform = CGAffineTransformMakeTranslation(0, -600)
         self.rainDrop.transform = CGAffineTransformMakeTranslation(0, -600)
@@ -354,9 +398,11 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.temperatureLabel.transform = CGAffineTransformMakeTranslation(300, 0)
         self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, -200)
         self.heatIndex.transform = CGAffineTransformMakeTranslation(-350, 0)
-        self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(350,0)
+        //self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(350,0)
         self.userLocationLabel.transform = CGAffineTransformMakeTranslation(-350,0)
         self.degreeButton.transform = CGAffineTransformMakeTranslation(350,0)
+        self.windUILabel.transform = CGAffineTransformMakeTranslation(-350,0)
+        self.humidityUILabel.transform = CGAffineTransformMakeTranslation(350,0)
         
         
         //WEEKLY
@@ -368,17 +414,18 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 100)
         
         //DAILY SPRING ACTION
+        
         springWithDelay(0.9, 0.45, {
             self.userLocationLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         springWithDelay(0.9, 0.45, {
             self.degreeButton.transform = CGAffineTransformMakeTranslation(0, 0)
         })
-
-        springWithDelay(0.9, 0.45, {
-            self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(0, 0)
-        })
-
+        
+        //springWithDelay(0.9, 0.45, {
+          //  self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+        //})
+        
         springWithDelay(0.9, 0.25, {
             self.windBag.transform = CGAffineTransformMakeTranslation(0, 0)
         })
@@ -402,6 +449,27 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         })
         springWithDelay(0.9, 0.45, {
             self.heatIndex.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        springWithDelay(0.9, 0.45, {
+            self.dayZeroTemperatureLowLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        springWithDelay(0.9, 0.45, {
+            self.dayZeroTemperatureHighLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        springWithDelay(0.9, 0.45, {
+            self.userLocationLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        springWithDelay(0.9, 0.45, {
+            self.windUILabel.transform = CGAffineTransformMakeTranslation(0, 0)
+        })
+        
+        
+        springWithDelay(0.9, 0.45, {
+            self.humidityUILabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
         
