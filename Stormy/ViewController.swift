@@ -399,7 +399,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, -200)
         self.heatIndex.transform = CGAffineTransformMakeTranslation(-350, 0)
         //self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(350,0)
-        self.userLocationLabel.transform = CGAffineTransformMakeTranslation(-350,0)
+        self.userLocationLabel.transform = CGAffineTransformMakeTranslation(350, 0)
         self.degreeButton.transform = CGAffineTransformMakeTranslation(350,0)
         self.windUILabel.transform = CGAffineTransformMakeTranslation(-350,0)
         self.humidityUILabel.transform = CGAffineTransformMakeTranslation(350,0)

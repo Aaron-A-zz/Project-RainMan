@@ -266,17 +266,17 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stormy and rainy" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNl-M7-Ood">
-                                <rect key="frame" x="135" y="75" width="84" height="53"/>
+                                <rect key="frame" x="135" y="75" width="140" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="CJe-S3-ZX3"/>
-                                    <constraint firstAttribute="width" constant="84" id="gWK-Ru-NfO"/>
+                                    <constraint firstAttribute="width" constant="140" id="gWK-Ru-NfO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IpF-Mv-AXT">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="-1" y="0.0" width="320" height="568"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQG-2w-bFd">
                                 <rect key="frame" x="255" y="130" width="30" height="30"/>
@@ -293,7 +293,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4KZ-eR-wNJ" secondAttribute="bottom" constant="27" id="0bf-F6-PP5"/>
                             <constraint firstAttribute="centerX" secondItem="mTT-7O-mQJ" secondAttribute="centerX" constant="29" id="0ek-aS-TNE"/>
@@ -390,7 +390,7 @@
                             <constraint firstItem="kJ0-p5-bTb" firstAttribute="top" secondItem="eNl-M7-Ood" secondAttribute="bottom" constant="22" id="vMk-qC-5Cd"/>
                             <constraint firstItem="vid-Dh-XTy" firstAttribute="leading" secondItem="WhM-46-BFa" secondAttribute="trailing" constant="9" id="vla-hl-7gz"/>
                             <constraint firstItem="JT3-qI-fw0" firstAttribute="centerY" secondItem="WQG-2w-bFd" secondAttribute="centerY" id="w6L-Fs-msJ"/>
-                            <constraint firstAttribute="centerX" secondItem="eNl-M7-Ood" secondAttribute="centerX" constant="-17" id="w7m-uo-OSE"/>
+                            <constraint firstAttribute="centerX" secondItem="eNl-M7-Ood" secondAttribute="centerX" constant="-45" id="w7m-uo-OSE"/>
                             <constraint firstItem="zfV-7Z-X3D" firstAttribute="top" secondItem="mDw-fv-pWN" secondAttribute="bottom" constant="-1" id="w84-p2-tyI"/>
                             <constraint firstAttribute="centerX" secondItem="fLY-Mc-VyE" secondAttribute="centerX" constant="-126.5" id="wq4-Np-aoN"/>
                             <constraint firstItem="S6C-Mh-IfS" firstAttribute="leading" secondItem="8UE-kT-R1B" secondAttribute="trailing" constant="-1" id="x7T-vQ-QI0"/>
