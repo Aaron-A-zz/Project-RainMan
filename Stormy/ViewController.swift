@@ -66,6 +66,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var daySixHighLow: UILabel!
     @IBOutlet weak var daySixImage: UIImageView!
     
+    //Alerts
+    
+    @IBOutlet weak var wAlerts: UILabel!
 
     
     var seenError : Bool = false
@@ -203,7 +206,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         //\(userLocation) (YOUR LOCATION!)
         
         //println(userLocation)
-
         
         let sharedSession = NSURLSession.sharedSession()
         
@@ -215,14 +217,15 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 let dataObject = NSData(contentsOfURL: location)
                 let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject!, options: nil, error: nil) as NSDictionary
                 
-                let currentWeather = Current(weatherDictionary:weatherDictionary)
-                
+                let currentWeather = Current(weatherDictionary: weatherDictionary)
                 let weeklyWeather = Weekly(weatherDictionary: weatherDictionary)
+                var alertWeather = WeatherAlerts(weatherDictionary: weatherDictionary)
+                
                 
                 //Test Connection and API with the folllowing
                 //println(currentWeather.temperature)
                 //println(currentWeather.currentTime!)
-                //println(weatherDictionary)
+                println(weatherDictionary)
 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
@@ -279,7 +282,10 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     self.daySixHighLow.text = "\(weeklyWeather.daySixTemperatureMin)°/ \(weeklyWeather.daySixTemperatureMax)°"
                     self.daySixImage.image = weeklyWeather.dayFiveIcon
                     
+                    //Weather Alerts
+                    self.wAlerts.text = ""
                     
+                    self.wAlerts.text = "\(alertWeather.userAlert)"
                     
                 //Stop refresh
                     self.refreshActivityIndicator.stopAnimating()
@@ -298,6 +304,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 self.presentViewController(networkIssueController, animated: true, completion: nil)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
                     
                     
                 //Stop refresh animation
