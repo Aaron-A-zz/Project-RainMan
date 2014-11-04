@@ -329,7 +329,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         refreshActivityIndicator.hidden = false
         refreshActivityIndicator.startAnimating()
         initLocationManager()
-        getCurrentWeatherData()
+        //getCurrentWeatherData()
         
         self.temperatureLabel.alpha = 0
         //self.heatIndex.alpha = 0
