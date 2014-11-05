@@ -26,7 +26,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var precipitationLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
-    @IBOutlet weak var refreshActivityIndicator: UIActivityIndicatorView!
+    //@IBOutlet weak var refreshActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var degreeButton: UIButton!
     @IBOutlet weak var swipeView: UIView!
     @IBOutlet weak var heatIndex: UIImageView!
@@ -288,8 +288,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     self.wAlerts.text = "\(alertWeather.userAlert)"
                     
                 //Stop refresh
-                    self.refreshActivityIndicator.stopAnimating()
-                    self.refreshActivityIndicator.hidden = true
+                    //self.refreshActivityIndicator.stopAnimating()
+                    //self.refreshActivityIndicator.hidden = true
                     self.degreeButton.hidden = false
                 })
                 
@@ -308,8 +308,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     
                     
                 //Stop refresh animation
-                    self.refreshActivityIndicator.stopAnimating()
-                    self.refreshActivityIndicator.hidden = true
+                    //self.refreshActivityIndicator.stopAnimating()
+                    //self.refreshActivityIndicator.hidden = true
                     self.degreeButton.hidden = false
                 })
             }
@@ -326,8 +326,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         
         degreeButton.hidden = true
-        refreshActivityIndicator.hidden = false
-        refreshActivityIndicator.startAnimating()
+        //refreshActivityIndicator.hidden = false
+        //refreshActivityIndicator.startAnimating()
         initLocationManager()
         //getCurrentWeatherData()
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -243,9 +243,6 @@
                                 <color key="textColor" red="0.70196078431372544" green="0.74509803921568629" blue="0.76078431372549016" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="JT3-qI-fw0">
-                                <rect key="frame" x="260" y="135" width="20" height="20"/>
-                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31E-Lc-DDc">
                                 <rect key="frame" x="273" y="449" width="25" height="19.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
@@ -371,7 +368,6 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ddv-fq-yAW" secondAttribute="bottom" constant="27" id="gw0-Fg-tfl"/>
                             <constraint firstItem="961-kq-eG5" firstAttribute="centerX" secondItem="vid-Dh-XTy" secondAttribute="centerX" constant="0.5" id="hIp-sj-w3c"/>
                             <constraint firstItem="04X-Y0-kEq" firstAttribute="firstBaseline" secondItem="vid-Dh-XTy" secondAttribute="firstBaseline" id="hIu-y3-TZp"/>
-                            <constraint firstItem="JT3-qI-fw0" firstAttribute="centerX" secondItem="WQG-2w-bFd" secondAttribute="centerX" id="i6t-Un-AAU"/>
                             <constraint firstAttribute="centerX" secondItem="8PN-Fl-Zjo" secondAttribute="centerX" constant="87" id="iqZ-JP-d0T"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="WhM-46-BFa" secondAttribute="bottom" constant="27" id="j2h-gS-I0V"/>
                             <constraint firstAttribute="centerX" secondItem="uLI-rq-01O" secondAttribute="centerX" constant="78.5" id="j4F-2y-SAR"/>
@@ -397,7 +393,6 @@
                             <constraint firstAttribute="centerX" secondItem="xc5-bX-Xk8" secondAttribute="centerX" constant="-50" id="uGW-YO-vbT"/>
                             <constraint firstItem="kJ0-p5-bTb" firstAttribute="top" secondItem="eNl-M7-Ood" secondAttribute="bottom" constant="22" id="vMk-qC-5Cd"/>
                             <constraint firstItem="vid-Dh-XTy" firstAttribute="leading" secondItem="WhM-46-BFa" secondAttribute="trailing" constant="9" id="vla-hl-7gz"/>
-                            <constraint firstItem="JT3-qI-fw0" firstAttribute="centerY" secondItem="WQG-2w-bFd" secondAttribute="centerY" id="w6L-Fs-msJ"/>
                             <constraint firstAttribute="centerX" secondItem="eNl-M7-Ood" secondAttribute="centerX" constant="-45" id="w7m-uo-OSE"/>
                             <constraint firstItem="zfV-7Z-X3D" firstAttribute="top" secondItem="mDw-fv-pWN" secondAttribute="bottom" constant="-1" id="w84-p2-tyI"/>
                             <constraint firstAttribute="centerX" secondItem="fLY-Mc-VyE" secondAttribute="centerX" constant="-126.5" id="wq4-Np-aoN"/>
@@ -441,7 +436,6 @@
                         <outlet property="precipitationLabel" destination="S6C-Mh-IfS" id="UP8-kK-nWL"/>
                         <outlet property="rainDrop" destination="xc5-bX-Xk8" id="LCf-c7-19u"/>
                         <outlet property="rainUILabel" destination="Z3f-h5-iyP" id="W7M-xb-lif"/>
-                        <outlet property="refreshActivityIndicator" destination="JT3-qI-fw0" id="Rwf-VV-M4u"/>
                         <outlet property="summaryLabel" destination="eNl-M7-Ood" id="dXX-1R-S1X"/>
                         <outlet property="swipeView" destination="IpF-Mv-AXT" id="20d-z3-tDk"/>
                         <outlet property="temperatureLabel" destination="kJ0-p5-bTb" id="60g-G6-ZXh"/>
