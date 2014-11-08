@@ -56,7 +56,7 @@ class InfoTabViewController: UIViewController {
     
     func popsound() {
         
-        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("popit", ofType: "wav")!)
+        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Squeaky Creaky", ofType: "wav")!)
         println(alertSound)
         
         var error:NSError?

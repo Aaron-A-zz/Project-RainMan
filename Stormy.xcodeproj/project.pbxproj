@@ -10,6 +10,7 @@
 		2101985919E023BF00AF808C /* Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101985819E023BF00AF808C /* Current.swift */; };
 		210748D719FBBB36003B04C8 /* SpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210748D619FBBB36003B04C8 /* SpringAnimation.swift */; };
 		2145B20C1A06914200E5D683 /* WeatherAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145B20B1A06914200E5D683 /* WeatherAlerts.swift */; };
+		216CDE471A0E459900ECBB22 /* Squeaky Creaky.wav in Resources */ = {isa = PBXBuildFile; fileRef = 216CDE461A0E459900ECBB22 /* Squeaky Creaky.wav */; };
 		218C583C19D86BA20054DBD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C583B19D86BA20054DBD0 /* AppDelegate.swift */; };
 		218C583E19D86BA20054DBD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C583D19D86BA20054DBD0 /* ViewController.swift */; };
 		218C584119D86BA20054DBD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 218C583F19D86BA20054DBD0 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		2101985819E023BF00AF808C /* Current.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Current.swift; sourceTree = "<group>"; };
 		210748D619FBBB36003B04C8 /* SpringAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringAnimation.swift; sourceTree = "<group>"; };
 		2145B20B1A06914200E5D683 /* WeatherAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAlerts.swift; sourceTree = "<group>"; };
+		216CDE461A0E459900ECBB22 /* Squeaky Creaky.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Squeaky Creaky.wav"; sourceTree = "<group>"; };
 		218C583619D86BA20054DBD0 /* Stormy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stormy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		218C583A19D86BA20054DBD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		218C583B19D86BA20054DBD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				2199211019FD9A4A008ABF65 /* popit.wav */,
 				2199210E19FD884D008ABF65 /* swoosh.wav */,
+				216CDE461A0E459900ECBB22 /* Squeaky Creaky.wav */,
 				219920DC19FD1977008ABF65 /* InfoTabViewController.swift */,
 				218C583B19D86BA20054DBD0 /* AppDelegate.swift */,
 				218C583D19D86BA20054DBD0 /* ViewController.swift */,
@@ -217,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216CDE471A0E459900ECBB22 /* Squeaky Creaky.wav in Resources */,
 				218C584119D86BA20054DBD0 /* Main.storyboard in Resources */,
 				2199210F19FD884D008ABF65 /* swoosh.wav in Resources */,
 				218C584619D86BA20054DBD0 /* LaunchScreen.xib in Resources */,
@@ -371,6 +375,7 @@
 				INFOPLIST_FILE = Stormy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -381,6 +386,7 @@
 				INFOPLIST_FILE = Stormy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

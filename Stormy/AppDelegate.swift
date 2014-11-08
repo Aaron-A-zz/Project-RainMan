@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.setStatusBarHidden(true, withAnimation: .None)
         
-        sleep(2);
+        //sleep(2);
         // Override point for customization after application launch.
         return true
     }

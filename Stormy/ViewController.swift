@@ -92,7 +92,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         swipeRec.direction = UISwipeGestureRecognizerDirection.Down
         swipeView.addGestureRecognizer(swipeRec)
         
-        initLocationManager()
+        refresh() 
         
     }
     
@@ -287,10 +287,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     
                     self.wAlerts.text = "\(alertWeather.userAlert)"
                     
-                //Stop refresh
-                    //self.refreshActivityIndicator.stopAnimating()
-                    //self.refreshActivityIndicator.hidden = true
-                    self.degreeButton.hidden = false
+                    
                 })
                 
                 
@@ -304,13 +301,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 self.presentViewController(networkIssueController, animated: true, completion: nil)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
+           
                     
-                    
-                //Stop refresh animation
-                    //self.refreshActivityIndicator.stopAnimating()
-                    //self.refreshActivityIndicator.hidden = true
-                    self.degreeButton.hidden = false
                 })
             }
             
@@ -323,16 +315,10 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     
      func refresh() {
-        
-        
-        degreeButton.hidden = true
-        //refreshActivityIndicator.hidden = false
-        //refreshActivityIndicator.startAnimating()
+
         initLocationManager()
-        //getCurrentWeatherData()
         
         self.temperatureLabel.alpha = 0
-        //self.heatIndex.alpha = 0
         self.dayOneImage.alpha = 0
         self.dayTwoImage.alpha = 0
         self.dayThreeImage.alpha = 0
@@ -357,6 +343,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.dayFiveHighLow.alpha = 0
         self.daySixWeekDayLabel.alpha = 0
         self.daySixHighLow.alpha = 0
+        self.wAlerts.alpha = 0
         
         self.weeklyForcastAnimation()
         
@@ -387,6 +374,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.dayFiveHighLow.alpha = 1.0
         self.daySixWeekDayLabel.alpha = 1.0
         self.daySixHighLow.alpha = 1.0
+        self.wAlerts.alpha = 1.0
             
         })
     }
@@ -410,6 +398,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.degreeButton.transform = CGAffineTransformMakeTranslation(350,0)
         self.windUILabel.transform = CGAffineTransformMakeTranslation(-350,0)
         self.humidityUILabel.transform = CGAffineTransformMakeTranslation(350,0)
+        self.degreeButton.transform = CGAffineTransformMakeTranslation(350, 0)
         
         
         //WEEKLY
@@ -425,7 +414,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         springWithDelay(0.9, 0.45, {
             self.userLocationLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, 0.60, {
             self.degreeButton.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
@@ -451,7 +440,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
             self.temperatureLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, 0.60, {
             self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         springWithDelay(0.9, 0.45, {
@@ -532,7 +521,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     func popsound() {
         
-        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("popit", ofType: "wav")!)
+        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Squeaky Creaky", ofType: "wav")!)
         println(alertSound)
         
         var error:NSError?
