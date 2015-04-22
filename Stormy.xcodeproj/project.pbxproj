@@ -100,8 +100,8 @@
 				2199211019FD9A4A008ABF65 /* popit.wav */,
 				2199210E19FD884D008ABF65 /* swoosh.wav */,
 				216CDE461A0E459900ECBB22 /* Squeaky Creaky.wav */,
-				219920DC19FD1977008ABF65 /* InfoTabViewController.swift */,
 				218C583B19D86BA20054DBD0 /* AppDelegate.swift */,
+				219920DC19FD1977008ABF65 /* InfoTabViewController.swift */,
 				218C583D19D86BA20054DBD0 /* ViewController.swift */,
 				2101985819E023BF00AF808C /* Current.swift */,
 				21A8EAE519EA00B900768A42 /* Weekly.swift */,
@@ -189,6 +189,7 @@
 				TargetAttributes = {
 					218C583519D86BA20054DBD0 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = 9XQ2GUK3K4;
 					};
 					218C584A19D86BA30054DBD0 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -372,9 +373,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Stormy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -383,9 +387,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Stormy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

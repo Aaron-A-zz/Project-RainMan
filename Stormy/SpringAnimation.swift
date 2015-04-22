@@ -5,7 +5,7 @@
 //  Created by Mav3r1ck on 10/25/14.
 //  Copyright (c) 2014 Mav3r1ck. All rights reserved.
 //
-//  Big Thanks goes out to Meng To for this :)
+//  Big Thanks goes out to Meng To for this :) Check out his site https://designcode.io
 
 import Foundation
 
@@ -43,7 +43,7 @@ func slideUp(duration: NSTimeInterval, animations: (() -> Void)!) {
         
         animations()
         
-        }, nil)
+        }, completion: nil)
 }
 
 func springWithCompletion(duration: NSTimeInterval, animations: (() -> Void)!, completion: ((Bool) -> Void)!) {

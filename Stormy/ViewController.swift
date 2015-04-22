@@ -69,7 +69,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     //Alerts
     
     @IBOutlet weak var wAlerts: UILabel!
-
+    
     
     var seenError : Bool = false
     var locationFixAchieved : Bool = false
@@ -82,17 +82,21 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     private let apiKey = "a6f8ab161b1f8680ad2a474ec055d69e"
     
     var audioPlayer = AVAudioPlayer()
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         swipeRec.addTarget(self, action: "swipedView")
         swipeRec.direction = UISwipeGestureRecognizerDirection.Down
         swipeView.addGestureRecognizer(swipeRec)
         
-        refresh() 
+        refresh()
+        
+        //PushNotifications
         
     }
     
@@ -104,7 +108,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
     }
     
-    //LOCATION LOCATION LOCATION 
+    //LOCATION LOCATION LOCATION
     
     func initLocationManager() {
         seenError = false
@@ -131,21 +135,21 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
             
-            let pm = placemarks[0] as CLPlacemark
+            let pm = placemarks[0] as! CLPlacemark
             self.displayLocationInfo(pm)
-            })
+        })
         
         if (locationFixAchieved == false) {
             locationFixAchieved = true
             var locationArray = locations as NSArray
-            var locationObj = locationArray.lastObject as CLLocation
+            var locationObj = locationArray.lastObject as! CLLocation
             var coord = locationObj.coordinate
             self.userLatitude = coord.latitude
             self.userLongitude = coord.longitude
-        
+            
             getCurrentWeatherData()
-           
-
+            
+            
         }
     }
     
@@ -190,7 +194,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 NSLog("Denied access: \(locationStatus)")
             }
     }
-
+    
     
     //WEATHER
     
@@ -215,7 +219,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
             if (error == nil) {
                 
                 let dataObject = NSData(contentsOfURL: location)
-                let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject!, options: nil, error: nil) as NSDictionary
+                let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject!, options: nil, error: nil) as! NSDictionary
                 
                 let currentWeather = Current(weatherDictionary: weatherDictionary)
                 let weeklyWeather = Weekly(weatherDictionary: weatherDictionary)
@@ -226,10 +230,10 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 //println(currentWeather.temperature)
                 //println(currentWeather.currentTime!)
                 println(weatherDictionary)
-
+                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
-                //Current outlook
+                    //Current outlook
                     self.temperatureLabel.text = "\(currentWeather.temperature)"
                     
                     self.iconView.image = currentWeather.icon
@@ -242,21 +246,55 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     self.dayZeroTemperatureHigh.text = "\(weeklyWeather.dayZeroTemperatureMax)"
                     self.dayZeroTemperatureLow.text = "\(weeklyWeather.dayZeroTemperatureMin)"
                     
-                //HEAT INDEX
+                    // Notification Statements
                     
-                    if currentWeather.temperature < 60 {
-                            self.heatIndex.image = UIImage(named: "heatindexWinter")
-                            self.dayZeroTemperatureLow.textColor = UIColor(red: 0/255.0, green: 121/255.0, blue: 255/255.0, alpha: 1.0)
-                        self.dayZeroTemperatureHigh.textColor = UIColor(red: 245/255.0, green: 6/255.0, blue: 93/255.0, alpha: 1.0)
-
+                    if currentWeather.precipProbability == 1.0 {
                         
-                    } else {
-                            self.heatIndex.image = UIImage(named:"heatindex")
+                        var localNotification:UILocalNotification = UILocalNotification()
+                        localNotification.alertAction = "Project RainMan"
+                        localNotification.alertBody = "Don't forget your umbrella today!"
+                        localNotification.fireDate = NSDate(timeIntervalSinceNow: 8)
+                        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+                        
+                    }
+                    
+                    if currentWeather.windSpeed > 38.0 {
+                        
+                        var localNotification:UILocalNotification = UILocalNotification()
+                        localNotification.alertAction = "Project RainMan"
+                        localNotification.alertBody = "It's going to be windy today!"
+                        localNotification.fireDate = NSDate(timeIntervalSinceNow: 8)
+                        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+                        
+                    }
+                    
+                    if weeklyWeather.dayZeroTemperatureMax > 90 {
+                        
+                        var localNotification:UILocalNotification = UILocalNotification()
+                        localNotification.alertAction = "Project RainMan"
+                        localNotification.alertBody = "It's going to be Hot today!"
+                        localNotification.fireDate = NSDate(timeIntervalSinceNow: 8)
+                        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
                         
                     }
                     
                     
-                //7 day out look
+                    
+                    //HEAT INDEX
+                    
+                    if currentWeather.temperature < 60 {
+                        self.heatIndex.image = UIImage(named: "heatindexWinter")
+                        self.dayZeroTemperatureLow.textColor = UIColor(red: 0/255.0, green: 121/255.0, blue: 255/255.0, alpha: 1.0)
+                        self.dayZeroTemperatureHigh.textColor = UIColor(red: 245/255.0, green: 6/255.0, blue: 93/255.0, alpha: 1.0)
+                        
+                        
+                    } else {
+                        self.heatIndex.image = UIImage(named:"heatindex")
+                        
+                    }
+                    
+                    
+                    //7 day out look
                     
                     self.dayOneWeekDayLabel.text = "\(weeklyWeather.dayOneTime!)"
                     self.dayOneHighLow.text = "\(weeklyWeather.dayOneTemperatureMin)°/ \(weeklyWeather.dayOneTemperatureMax)°"
@@ -269,7 +307,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     self.dayThreeWeekDayLabel.text = "\(weeklyWeather.dayThreeTime!)"
                     self.dayThreeHighLow.text = "\(weeklyWeather.dayThreeTemperatureMin)°/ \(weeklyWeather.dayThreeTemperatureMax)°"
                     self.dayThreeImage.image = weeklyWeather.dayThreeIcon
-
+                    
                     self.dayFourWeekDayLabel.text = "\(weeklyWeather.dayFourTime!)"
                     self.dayFourHighLow.text = "\(weeklyWeather.dayFourTemperatureMin)°/ \(weeklyWeather.dayFourTemperatureMax)°"
                     self.dayFourImage.image = weeklyWeather.dayFourIcon
@@ -287,7 +325,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     
                     self.wAlerts.text = "\(alertWeather.userAlert)"
                     
-                    
                 })
                 
                 
@@ -301,7 +338,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 self.presentViewController(networkIssueController, animated: true, completion: nil)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-           
+                    
                     
                 })
             }
@@ -314,8 +351,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     }
     
     
-     func refresh() {
-
+    func refresh() {
+        
+        
         initLocationManager()
         
         self.temperatureLabel.alpha = 0
@@ -348,33 +386,33 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         self.weeklyForcastAnimation()
         
         UIView.animateWithDuration(1.5, animations: {
-        self.temperatureLabel.alpha = 1.0
-        self.heatIndex.alpha = 1.0
-        self.dayOneImage.alpha = 1.0
-        self.dayTwoImage.alpha = 1.0
-        self.dayThreeImage.alpha = 1.0
-        self.dayFourImage.alpha = 1.0
-        self.dayFiveImage.alpha = 1.0
-        self.daySixImage.alpha = 1.0
-        self.dayZeroTemperatureLow.alpha = 1.0
-        self.dayZeroTemperatureHigh.alpha = 1.0
-        self.windSpeedLabel.alpha = 1.0
-        self.humidityLabel.alpha = 1.0
-        self.precipitationLabel.alpha = 1.0
-        self.rainUILabel.alpha = 1.0
-        self.dayOneWeekDayLabel.alpha = 1.0
-        self.dayOneHighLow.alpha = 1.0
-        self.dayTwoWeekDayLabel.alpha = 1.0
-        self.dayTwoHighLow.alpha = 1.0
-        self.dayThreeWeekDayLabel.alpha = 1.0
-        self.dayThreeHighLow.alpha = 1.0
-        self.dayFourWeekDayLabel.alpha = 1.0
-        self.dayFourHighLow.alpha = 1.0
-        self.dayFiveWeekDayLabel.alpha = 1.0
-        self.dayFiveHighLow.alpha = 1.0
-        self.daySixWeekDayLabel.alpha = 1.0
-        self.daySixHighLow.alpha = 1.0
-        self.wAlerts.alpha = 1.0
+            self.temperatureLabel.alpha = 1.0
+            self.heatIndex.alpha = 1.0
+            self.dayOneImage.alpha = 1.0
+            self.dayTwoImage.alpha = 1.0
+            self.dayThreeImage.alpha = 1.0
+            self.dayFourImage.alpha = 1.0
+            self.dayFiveImage.alpha = 1.0
+            self.daySixImage.alpha = 1.0
+            self.dayZeroTemperatureLow.alpha = 1.0
+            self.dayZeroTemperatureHigh.alpha = 1.0
+            self.windSpeedLabel.alpha = 1.0
+            self.humidityLabel.alpha = 1.0
+            self.precipitationLabel.alpha = 1.0
+            self.rainUILabel.alpha = 1.0
+            self.dayOneWeekDayLabel.alpha = 1.0
+            self.dayOneHighLow.alpha = 1.0
+            self.dayTwoWeekDayLabel.alpha = 1.0
+            self.dayTwoHighLow.alpha = 1.0
+            self.dayThreeWeekDayLabel.alpha = 1.0
+            self.dayThreeHighLow.alpha = 1.0
+            self.dayFourWeekDayLabel.alpha = 1.0
+            self.dayFourHighLow.alpha = 1.0
+            self.dayFiveWeekDayLabel.alpha = 1.0
+            self.dayFiveHighLow.alpha = 1.0
+            self.daySixWeekDayLabel.alpha = 1.0
+            self.daySixHighLow.alpha = 1.0
+            self.wAlerts.alpha = 1.0
             
         })
     }
@@ -419,7 +457,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         })
         
         //springWithDelay(0.9, 0.45, {
-          //  self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+        //  self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         //})
         
         springWithDelay(0.9, 0.25, {
@@ -492,15 +530,15 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         springWithDelay(0.9, 0.75, {
             self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 0)
-          
+            
         })
-
+        
     }
     
     
     @IBAction func degreeButtonPressed(sender: AnyObject) {
         
-        self.popsound()
+        
         
     }
     
@@ -516,39 +554,28 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         audioPlayer.prepareToPlay()
         audioPlayer.play()
         
-
+        
     }
     
-    func popsound() {
-        
-        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Squeaky Creaky", ofType: "wav")!)
-        println(alertSound)
-        
-        var error:NSError?
-        audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
-        
-        
-    }
+    
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "infotab"{
-            let vc = segue.destinationViewController as InfoTabViewController
+            let vc = segue.destinationViewController as! InfoTabViewController
             
         }
         
         
     }
     
-        override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-            
+        
     }
-
+    
     
 }
 
