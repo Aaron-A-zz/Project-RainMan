@@ -1,10 +1,7 @@
 //
 //  AppDelegate.swift
 //  Stormy
-//
-//  Created by Mav3r1ck on 9/28/14.
-//  Copyright (c) 2014 Mav3r1ck. All rights reserved.
-//
+//  Created by Aaron A
 
 import UIKit
 

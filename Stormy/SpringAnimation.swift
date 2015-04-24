@@ -1,10 +1,7 @@
 //
 //  SpringAnimation.swift
 //  Stormy
-//
-//  Created by Mav3r1ck on 10/25/14.
-//  Copyright (c) 2014 Mav3r1ck. All rights reserved.
-//
+//  Created by Aaron A
 //  Big Thanks goes out to Meng To for this :) Check out his site https://designcode.io
 
 import Foundation

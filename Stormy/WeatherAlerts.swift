@@ -1,10 +1,7 @@
 //
 //  WeatherAlerts.swift
 //  Stormy
-//
-//  Created by Mav3r1ck on 11/2/14.
-//  Copyright (c) 2014 Mav3r1ck. All rights reserved.
-//
+//  Created by Aaron A
 
 import Foundation
 import UIKit

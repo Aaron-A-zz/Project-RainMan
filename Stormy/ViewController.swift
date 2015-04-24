@@ -1,10 +1,7 @@
 //
 //  ViewController.swift
 //  Stormy
-//
-//  Created by Mav3r1ck on 9/28/14.
-//  Copyright (c) 2014 Mav3r1ck. All rights reserved.
-//
+//  Created by Aaron A
 
 import UIKit
 import AVFoundation
@@ -79,7 +76,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     var userLatitude : Double!
     var userLongitude : Double!
     
-    private let apiKey = "a6f8ab161b1f8680ad2a474ec055d69e"
+    private let apiKey = "YOUR API KEY"  // https://developer.forecast.io
     
     var audioPlayer = AVAudioPlayer()
     
