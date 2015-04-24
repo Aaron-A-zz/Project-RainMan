@@ -202,7 +202,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
         let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
         
-        //39.1267,-77.714 Purcellville VA (EAST COAST USA)
         //72.371224,-41.382676 GreenLand (Cold Place!)
         //\(userLocation) (YOUR LOCATION!)
         
