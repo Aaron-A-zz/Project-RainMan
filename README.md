@@ -1,5 +1,5 @@
 # Project-RainMan
-Open Source Weather App created with Swift
+Open Source Weather App created with Swift<br>
 www.Mav3r1ck.io<br>
 Project RainMan is powered by Forecast.io<br>
 https://developer.forecast.io
