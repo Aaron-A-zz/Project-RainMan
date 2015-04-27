@@ -84,8 +84,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         super.viewDidLoad()
         
-        
-        
         // Do any additional setup after loading the view, typically from a nib.
         swipeRec.addTarget(self, action: "swipedView")
         swipeRec.direction = UISwipeGestureRecognizerDirection.Down
@@ -324,9 +322,10 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 })
                 
                 
+                
             } else {
                 
-                let networkIssueController = UIAlertController(title: "Error", message: "Unable to load data. Connectivity error!", preferredStyle: .Alert)
+                let networkIssueController = UIAlertController(title: "NO API KEY", message: "Hello! Looks like you forgot to add the API KEY on line 79", preferredStyle: .Alert)
                 let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 networkIssueController.addAction(okButton)
                 let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
