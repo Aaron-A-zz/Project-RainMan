@@ -5,7 +5,7 @@ https://developer.forecast.io
 <br>
 <center>www.Mav3r1ck.io</center>
 
-<h1>I download it! now what?<h1>
+<h1>I download it! now what?</h1>
 After you have download the app head on over to forecast.io and register for an API key.
 
 Once you have your API key open up the ViewController.swift file and jump down to line 79.
