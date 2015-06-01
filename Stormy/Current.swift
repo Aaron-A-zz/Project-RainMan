@@ -85,6 +85,10 @@ func weatherIconFromString(stringIcon: String) -> UIImage {
     
 }
 
+func Fahrenheit2Celsius(f: Int) -> Int {
+  return Int((Double(f)-32.0) / 1.8)
+}
+
 
 
 

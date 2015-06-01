@@ -22,6 +22,7 @@
 		2199211119FD9A4A008ABF65 /* popit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2199211019FD9A4A008ABF65 /* popit.wav */; };
 		21A8EAE619EA00BA00768A42 /* Weekly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8EAE519EA00B900768A42 /* Weekly.swift */; };
 		21F6775B19E1EFD000575B1B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F6775A19E1EFD000575B1B /* CoreLocation.framework */; };
+		3EA9A3811B1C1B9E000653FC /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EA9A3801B1C1B9E000653FC /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		2199211019FD9A4A008ABF65 /* popit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = popit.wav; sourceTree = "<group>"; };
 		21A8EAE519EA00B900768A42 /* Weekly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weekly.swift; sourceTree = "<group>"; };
 		21F6775A19E1EFD000575B1B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3EA9A3801B1C1B9E000653FC /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Stormy/Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		218C582D19D86BA20054DBD0 = {
 			isa = PBXGroup;
 			children = (
+				3EA9A3801B1C1B9E000653FC /* Settings.bundle */,
 				21F6775A19E1EFD000575B1B /* CoreLocation.framework */,
 				218C583819D86BA20054DBD0 /* Stormy */,
 				218C584E19D86BA30054DBD0 /* StormyTests */,
@@ -226,6 +229,7 @@
 				218C584619D86BA20054DBD0 /* LaunchScreen.xib in Resources */,
 				2199211119FD9A4A008ABF65 /* popit.wav in Resources */,
 				218C584319D86BA20054DBD0 /* Images.xcassets in Resources */,
+				3EA9A3811B1C1B9E000653FC /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
