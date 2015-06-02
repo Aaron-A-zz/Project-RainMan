@@ -75,9 +75,10 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     var userLocation : String!
     var userLatitude : Double!
     var userLongitude : Double!
-    
+	  var userTemperatureCelsius : Bool!
+  
     private let apiKey = "YOUR API KEY"  // https://developer.forecast.io
-    
+  
     var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
@@ -85,6 +86,12 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
+      
+        // Get user preference
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        userTemperatureCelsius = defaults.boolForKey("celsius")
+	      println("defaults: celsius  = \(userTemperatureCelsius)");
+      
         swipeRec.addTarget(self, action: "swipedView")
         swipeRec.direction = UISwipeGestureRecognizerDirection.Down
         swipeView.addGestureRecognizer(swipeRec)
@@ -228,7 +235,13 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
                     //Current outlook
-                    self.temperatureLabel.text = "\(currentWeather.temperature)"
+//                    self.userTemperatureCelsius = true
+                  
+                    if self.userTemperatureCelsius == true {
+                     self.temperatureLabel.text = "\(Fahrenheit2Celsius(currentWeather.temperature))"
+                    } else {
+                     self.temperatureLabel.text = "\(currentWeather.temperature)"
+                    }
                     
                     self.iconView.image = currentWeather.icon
                     //self.currentTimeLabel.text = "\(currentWeather.currentTime!)"
@@ -236,9 +249,15 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     self.precipitationLabel.text = "\(currentWeather.precipProbability)"
                     self.summaryLabel.text = "\(currentWeather.summary)"
                     self.windSpeedLabel.text = "\(currentWeather.windSpeed)"
-                    
-                    self.dayZeroTemperatureHigh.text = "\(weeklyWeather.dayZeroTemperatureMax)"
-                    self.dayZeroTemperatureLow.text = "\(weeklyWeather.dayZeroTemperatureMin)"
+                  
+                    if self.userTemperatureCelsius == true {
+                      self.dayZeroTemperatureHigh.text = "\(Fahrenheit2Celsius(weeklyWeather.dayZeroTemperatureMax))"
+                      self.dayZeroTemperatureLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayZeroTemperatureMin))"
+                    } else {
+                      self.temperatureLabel.text = "\(currentWeather.temperature)"
+                      self.dayZeroTemperatureHigh.text = "\(weeklyWeather.dayZeroTemperatureMax)"
+                      self.dayZeroTemperatureLow.text = "\(weeklyWeather.dayZeroTemperatureMin)"
+	                  }
                     
                     // Notification Statements
                     
@@ -289,29 +308,47 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                     
                     
                     //7 day out look
-                    
+                  
+                    if self.userTemperatureCelsius == true {
+                      self.dayOneHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMax))°"
+
+                      self.dayTwoHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMax))°"
+
+                      self.dayThreeHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayThreeTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayThreeTemperatureMax))°"
+
+                      self.dayFourHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayFourTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayFourTemperatureMax))°"
+
+                      self.dayFiveHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayFiveTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayFiveTemperatureMax))°"
+
+                      self.daySixHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.daySixTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.daySixTemperatureMax))°"
+                      
+                    } else {
+                      self.dayOneHighLow.text = "\(weeklyWeather.dayOneTemperatureMin)°/ \(weeklyWeather.dayOneTemperatureMax)°"
+                      self.dayTwoHighLow.text = "\(weeklyWeather.dayTwoTemperatureMin)°/ \(weeklyWeather.dayTwoTemperatureMax)°"
+                      self.dayThreeHighLow.text = "\(weeklyWeather.dayThreeTemperatureMin)°/ \(weeklyWeather.dayThreeTemperatureMax)°"
+                      self.dayFourHighLow.text = "\(weeklyWeather.dayFourTemperatureMin)°/ \(weeklyWeather.dayFourTemperatureMax)°"
+                      self.dayFiveHighLow.text = "\(weeklyWeather.dayFiveTemperatureMin)°/ \(weeklyWeather.dayFiveTemperatureMax)°"
+                      self.daySixHighLow.text = "\(weeklyWeather.daySixTemperatureMin)°/ \(weeklyWeather.daySixTemperatureMax)°"
+                    }
+                  
+                  
+                  
                     self.dayOneWeekDayLabel.text = "\(weeklyWeather.dayOneTime!)"
-                    self.dayOneHighLow.text = "\(weeklyWeather.dayOneTemperatureMin)°/ \(weeklyWeather.dayOneTemperatureMax)°"
-                    self.dayOneImage.image = weeklyWeather.dayOneIcon
+                  	self.dayOneImage.image = weeklyWeather.dayOneIcon
                     
                     self.dayTwoWeekDayLabel.text = "\(weeklyWeather.dayTwoTime!)"
-                    self.dayTwoHighLow.text = "\(weeklyWeather.dayTwoTemperatureMin)°/ \(weeklyWeather.dayTwoTemperatureMax)°"
                     self.dayTwoImage.image = weeklyWeather.dayTwoIcon
                     
                     self.dayThreeWeekDayLabel.text = "\(weeklyWeather.dayThreeTime!)"
-                    self.dayThreeHighLow.text = "\(weeklyWeather.dayThreeTemperatureMin)°/ \(weeklyWeather.dayThreeTemperatureMax)°"
                     self.dayThreeImage.image = weeklyWeather.dayThreeIcon
                     
                     self.dayFourWeekDayLabel.text = "\(weeklyWeather.dayFourTime!)"
-                    self.dayFourHighLow.text = "\(weeklyWeather.dayFourTemperatureMin)°/ \(weeklyWeather.dayFourTemperatureMax)°"
                     self.dayFourImage.image = weeklyWeather.dayFourIcon
                     
                     self.dayFiveWeekDayLabel.text = "\(weeklyWeather.dayFiveTime!)"
-                    self.dayFiveHighLow.text = "\(weeklyWeather.dayFiveTemperatureMin)°/ \(weeklyWeather.dayFiveTemperatureMax)°"
                     self.dayFiveImage.image = weeklyWeather.dayFiveIcon
                     
                     self.daySixWeekDayLabel.text = "\(weeklyWeather.daySixTime!)"
-                    self.daySixHighLow.text = "\(weeklyWeather.daySixTemperatureMin)°/ \(weeklyWeather.daySixTemperatureMax)°"
                     self.daySixImage.image = weeklyWeather.dayFiveIcon
                     
                     //Weather Alerts
@@ -532,6 +569,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     
     @IBAction func degreeButtonPressed(sender: AnyObject) {
+      
+      println("TemperatureMode \(userTemperatureCelsius)");
         
         
         
