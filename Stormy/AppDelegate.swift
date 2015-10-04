@@ -15,8 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         application.setStatusBarHidden(true, withAnimation: .None)
         
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert |
-            UIUserNotificationType.Badge, categories: nil))
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [UIUserNotificationType.Sound, UIUserNotificationType.Alert, UIUserNotificationType.Badge], categories: nil))
         
         
         //sleep(2);

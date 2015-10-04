@@ -88,9 +88,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
       
         // Get user preference
-        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         userTemperatureCelsius = defaults.boolForKey("celsius")
-	      println("defaults: celsius  = \(userTemperatureCelsius)");
+	      print("defaults: celsius  = \(userTemperatureCelsius)");
       
         swipeRec.addTarget(self, action: "swipedView")
         swipeRec.direction = UISwipeGestureRecognizerDirection.Down
@@ -123,21 +123,13 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        locationManager.stopUpdatingLocation()
-        if ((error) != nil) {
-            if (seenError == false) {
-                seenError = true
-                print(error)
-            }
-        }
-    }
+ 
     
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)->Void in
             
-            let pm = placemarks[0] as! CLPlacemark
+            let pm = placemarks![0]
             self.displayLocationInfo(pm)
         })
         
@@ -172,7 +164,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager!,
+    func locationManager(manager: CLLocationManager,
         didChangeAuthorizationStatus status: CLAuthorizationStatus) {
             var shouldIAllow = false
             
@@ -214,13 +206,13 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         let sharedSession = NSURLSession.sharedSession()
         
-        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
+        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
             
             
             if (error == nil) {
                 
-                let dataObject = NSData(contentsOfURL: location)
-                let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject!, options: nil, error: nil) as! NSDictionary
+                let dataObject = NSData(contentsOfURL: location!)
+                let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
                 
                 let currentWeather = Current(weatherDictionary: weatherDictionary)
                 let weeklyWeather = Weekly(weatherDictionary: weatherDictionary)
@@ -230,7 +222,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 //Test Connection and API with the folllowing
                 //println(currentWeather.temperature)
                 //println(currentWeather.currentTime!)
-                println(weatherDictionary)
+                print(weatherDictionary)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
@@ -481,10 +473,10 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         //DAILY SPRING ACTION
         
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.userLocationLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
-        springWithDelay(0.9, 0.60, {
+        springWithDelay(0.9, delay: 0.60, animations: {
             self.degreeButton.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
@@ -492,75 +484,75 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         //  self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         //})
         
-        springWithDelay(0.9, 0.25, {
+        springWithDelay(0.9, delay: 0.25, animations: {
             self.windBag.transform = CGAffineTransformMakeTranslation(0, 0)
         })
-        springWithDelay(0.9, 0.35, {
+        springWithDelay(0.9, delay: 0.35, animations: {
             self.umbrella.transform = CGAffineTransformMakeTranslation(0, 0)
         })
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.rainDrop.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.iconView.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.temperatureLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.60, {
+        springWithDelay(0.9, delay: 0.60, animations: {
             self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.heatIndex.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.dayZeroTemperatureLowLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.dayZeroTemperatureHighLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.userLocationLabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.windUILabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
         
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.humidityUILabel.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
         
         //WEEKLY FORCAST SPRING ACTION
-        springWithDelay(0.9, 0.25, {
+        springWithDelay(0.9, delay: 0.25, animations: {
             self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.35, {
+        springWithDelay(0.9, delay: 0.35, animations: {
             self.dayTwoImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.45, {
+        springWithDelay(0.9, delay: 0.45, animations: {
             self.dayThreeImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.55, {
+        springWithDelay(0.9, delay: 0.55, animations: {
             self.dayFourImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.65, {
+        springWithDelay(0.9, delay: 0.65, animations: {
             self.dayFiveImage.transform = CGAffineTransformMakeTranslation(0, 0)
         })
         
-        springWithDelay(0.9, 0.75, {
+        springWithDelay(0.9, delay: 0.75, animations: {
             self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 0)
             
         })
@@ -570,7 +562,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     @IBAction func degreeButtonPressed(sender: AnyObject) {
       
-      println("TemperatureMode \(userTemperatureCelsius)");
+      print("TemperatureMode \(userTemperatureCelsius)");
         
         
         
@@ -581,10 +573,15 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     func swooshsound() {
         
         var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("swoosh", ofType: "wav")!)
-        println(alertSound)
+        print(alertSound)
         
         var error:NSError?
-        audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: alertSound)
+        } catch var error1 as NSError {
+            error = error1
+            
+        }
         audioPlayer.prepareToPlay()
         audioPlayer.play()
         
@@ -597,7 +594,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "infotab"{
-            let vc = segue.destinationViewController as! InfoTabViewController
+            let _ = segue.destinationViewController as! InfoTabViewController
             
         }
         

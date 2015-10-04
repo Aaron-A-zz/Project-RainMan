@@ -33,13 +33,13 @@ class InfoTabViewController: UIViewController {
         self.projectName.transform = CGAffineTransformMakeTranslation(0, 100)
         self.forecast.transform = CGAffineTransformMakeTranslation(0, 100)
         
-        springWithDelay(0.9, 0.50, {
+        springWithDelay(0.9, delay: 0.50, animations: {
             self.thermometer.transform = CGAffineTransformMakeTranslation(0, 0)
         })
-        springWithDelay(0.9, 0.50, {
+        springWithDelay(0.9, delay: 0.50, animations: {
             self.projectName.transform = CGAffineTransformMakeTranslation(0, 0)
         })
-        springWithDelay(0.9, 0.50, {
+        springWithDelay(0.9, delay: 0.50, animations: {
             self.forecast.transform = CGAffineTransformMakeTranslation(0, 0)
         })
     }

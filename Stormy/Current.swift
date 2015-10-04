@@ -80,7 +80,7 @@ func weatherIconFromString(stringIcon: String) -> UIImage {
             imageName = "default"
     }
     
-    var iconImage = UIImage(named: imageName)
+    let iconImage = UIImage(named: imageName)
     return iconImage!
     
 }
