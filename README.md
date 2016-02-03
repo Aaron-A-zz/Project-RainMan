@@ -2,7 +2,7 @@
 
 Download the app from the iTunes store for free [here](https://itunes.apple.com/us/app/project-rainman/id931263401)
 
-#NOTE: The code is open source NOT THE DESIGN OR IMAGES!
+#NOTE: The code is open source NOT the design or images :) Thanks.
 
 Open Source Weather App created with Swift and powered by Forecast.io<br>
 https://developer.forecast.io
