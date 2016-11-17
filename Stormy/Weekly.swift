@@ -42,11 +42,14 @@ struct Weekly {
     var daySixIcon: UIImage
     
 
-    init (weatherDictionary: NSDictionary) {
+    init (weatherDictionary: [String : Any]) {
         
-        let weeklyWeather = weatherDictionary["daily"] as! NSDictionary
         
-        let weeklyForcast = weeklyWeather["data"] as! NSArray
+        let weeklyWeather = weatherDictionary["daily"] as! [String: Any]
+        
+        let weeklyForcast = weeklyWeather["data"] as! [[String: Any]]
+        
+        
         
         //DAY ZERO
         dayZeroTemperatureMax = weeklyForcast[0]["temperatureMax"] as! Int
@@ -105,16 +108,16 @@ struct Weekly {
     
 }
 
-func weeekDateStringFromUnixtime(unixTime: Int) -> String {
+func weeekDateStringFromUnixtime(_ unixTime: Int) -> String {
     
-    let timeInSeconds = NSTimeInterval(unixTime)
-    let weatherDate = NSDate(timeIntervalSince1970: timeInSeconds)
+    let timeInSeconds = TimeInterval(unixTime)
+    let weatherDate = Date(timeIntervalSince1970: timeInSeconds)
     
-    let dateFormatter = NSDateFormatter()
+    let dateFormatter = DateFormatter()
     //dateFormatter.timeStyle = .MediumStyle
     dateFormatter.dateFormat = "EEE"
     
-    return dateFormatter.stringFromDate(weatherDate)
+    return dateFormatter.string(from: weatherDate)
     
     
 }

@@ -29,24 +29,24 @@ class InfoTabViewController: UIViewController {
     
     func infoAnimation() {
         
-        self.thermometer.transform = CGAffineTransformMakeTranslation(0, 1000)
-        self.projectName.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.forecast.transform = CGAffineTransformMakeTranslation(0, 100)
+        self.thermometer.transform = CGAffineTransform(translationX: 0, y: 1000)
+        self.projectName.transform = CGAffineTransform(translationX: 0, y: 100)
+        self.forecast.transform = CGAffineTransform(translationX: 0, y: 100)
         
         springWithDelay(0.9, delay: 0.50, animations: {
-            self.thermometer.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.thermometer.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         springWithDelay(0.9, delay: 0.50, animations: {
-            self.projectName.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.projectName.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         springWithDelay(0.9, delay: 0.50, animations: {
-            self.forecast.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.forecast.transform = CGAffineTransform(translationX: 0, y: 0)
         })
     }
     
     
     
-    @IBAction func backButtonPressed(sender: AnyObject) {
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
         
     }
     
