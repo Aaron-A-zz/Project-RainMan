@@ -18,7 +18,7 @@ struct Current {
     var windSpeed: Double
 
     
-    init (weatherDictionary: NSDictionary) {
+    init (weatherDictionary: [String: Any]) {
         
         let currentWeather = weatherDictionary["currently"] as! NSDictionary
         temperature = currentWeather["temperature"] as! Int
@@ -35,15 +35,15 @@ struct Current {
 
 //Date formatter
 
-func dateStringFromUnixtime(unixTime: Int) -> String {
+func dateStringFromUnixtime(_ unixTime: Int) -> String {
     
-    let timeInSeconds = NSTimeInterval(unixTime)
-    let weatherDate = NSDate(timeIntervalSince1970: timeInSeconds)
+    let timeInSeconds = TimeInterval(unixTime)
+    let weatherDate = Date(timeIntervalSince1970: timeInSeconds)
     
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.timeStyle = .MediumStyle
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeStyle = .medium
     
-    return dateFormatter.stringFromDate(weatherDate)
+    return dateFormatter.string(from: weatherDate)
     
     
 }
@@ -51,7 +51,7 @@ func dateStringFromUnixtime(unixTime: Int) -> String {
 
 //Images 
 
-func weatherIconFromString(stringIcon: String) -> UIImage {
+func weatherIconFromString(_ stringIcon: String) -> UIImage {
     
     var imageName: String
     
@@ -85,7 +85,7 @@ func weatherIconFromString(stringIcon: String) -> UIImage {
     
 }
 
-func Fahrenheit2Celsius(f: Int) -> Int {
+func Fahrenheit2Celsius(_ f: Int) -> Int {
   return Int((Double(f)-32.0) / 1.8)
 }
 
