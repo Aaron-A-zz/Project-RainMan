@@ -72,9 +72,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     var locationFixAchieved : Bool = false
     var locationStatus : NSString = "Not Started"
     var locationManager: CLLocationManager!
-    var userLocation : String!
-    var userLatitude : Double!
-    var userLongitude : Double!
+//    var userLocation : String!
+    var userLatitude : Double?
+    var userLongitude : Double?
 	  var userTemperatureCelsius : Bool!
   
     fileprivate let apiKey = "fbc500dda1840ebf3dd505b8c120ef90" 
@@ -193,11 +193,15 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     //WEATHER
     
     func getCurrentWeatherData() -> Void {
+        guard let userLatitude = self.userLatitude, let userLongitude = self.userLongitude else { return }
         
-        userLocation = "\(userLatitude),\(userLongitude)"
+        let userLocation = "\(userLatitude),\(userLongitude)"
         
-        let baseURL = URL(string: "https://api.forecast.io/forecast/\(apiKey)/")
-        let forecastURL = URL(string: "\(userLocation)", relativeTo:baseURL)
+        
+        let urlString = "https://api.forecast.io/forecast/\(apiKey)/\(userLocation)"
+        let forecastURL = URL(string: urlString)
+        
+        
         
         //72.371224,-41.382676 GreenLand (Cold Place!)
         //\(userLocation) (YOUR LOCATION!)
@@ -206,7 +210,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         let sharedSession = URLSession.shared
         
-        let downloadTask: URLSessionDownloadTask = sharedSession.downloadTask(with: forecastURL!, completionHandler: { (location: URL?, response: URLResponse?, error: NSError?) -> Void in
+        
+        let downloadTask: URLSessionDownloadTask = sharedSession.downloadTask(with: forecastURL!, completionHandler: { (location: URL?, response: URLResponse?, error: Error?) -> Void in
             
             
             if (error == nil) {
@@ -369,8 +374,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
             
         } as! (URL?, URLResponse?, Error?) -> Void)
         
-        downloadTask.resume()
         
+        downloadTask.resume()
         
     }
     
