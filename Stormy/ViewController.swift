@@ -77,7 +77,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     var userLongitude : Double?
 	  var userTemperatureCelsius : Bool!
   
-    fileprivate let apiKey = "fbc500dda1840ebf3dd505b8c120ef90" 
+    private let apiKey = "YOUR API KEY"  // https://developer.forecast.io
   
     var audioPlayer = AVAudioPlayer()
     

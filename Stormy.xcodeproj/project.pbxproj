@@ -194,7 +194,6 @@
 				TargetAttributes = {
 					218C583519D86BA20054DBD0 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = 8V7ERX2APN;
 						LastSwiftMigration = 0810;
 					};
 					218C584A19D86BA30054DBD0 = {
@@ -383,7 +382,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8V7ERX2APN;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Stormy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -399,7 +398,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8V7ERX2APN;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Stormy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
