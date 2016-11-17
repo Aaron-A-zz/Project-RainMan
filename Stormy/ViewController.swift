@@ -77,7 +77,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     var userLongitude : Double!
 	  var userTemperatureCelsius : Bool!
   
-    private let apiKey = "YOUR API KEY"  // https://developer.forecast.io
+    fileprivate let apiKey = "fbc500dda1840ebf3dd505b8c120ef90" 
   
     var audioPlayer = AVAudioPlayer()
     
@@ -88,12 +88,12 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
       
         // Get user preference
-        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        userTemperatureCelsius = defaults.boolForKey("celsius")
+        let defaults: UserDefaults = UserDefaults.standard
+        userTemperatureCelsius = defaults.bool(forKey: "celsius")
 	      print("defaults: celsius  = \(userTemperatureCelsius)");
       
-        swipeRec.addTarget(self, action: "swipedView")
-        swipeRec.direction = UISwipeGestureRecognizerDirection.Down
+        swipeRec.addTarget(self, action: #selector(ViewController.swipedView))
+        swipeRec.direction = UISwipeGestureRecognizerDirection.down
         swipeView.addGestureRecognizer(swipeRec)
         
         refresh()
@@ -126,7 +126,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
  
     
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)->Void in
             
             let pm = placemarks![0]
@@ -135,9 +135,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         if (locationFixAchieved == false) {
             locationFixAchieved = true
-            var locationArray = locations as NSArray
-            var locationObj = locationArray.lastObject as! CLLocation
-            var coord = locationObj.coordinate
+            let locationArray = locations as NSArray
+            let locationObj = locationArray.lastObject as! CLLocation
+            let coord = locationObj.coordinate
             self.userLatitude = coord.latitude
             self.userLongitude = coord.longitude
             
@@ -147,7 +147,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         }
     }
     
-    func displayLocationInfo(placemark: CLPlacemark?) {
+    func displayLocationInfo(_ placemark: CLPlacemark?) {
         if let containsPlacemark = placemark {
             //stop updating location to save battery life
             locationManager.stopUpdatingLocation()
@@ -164,22 +164,22 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager,
-        didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager,
+        didChangeAuthorization status: CLAuthorizationStatus) {
             var shouldIAllow = false
             
             switch status {
-            case CLAuthorizationStatus.Restricted:
+            case CLAuthorizationStatus.restricted:
                 locationStatus = "Restricted Access to location"
-            case CLAuthorizationStatus.Denied:
+            case CLAuthorizationStatus.denied:
                 locationStatus = "User denied access to location"
-            case CLAuthorizationStatus.NotDetermined:
+            case CLAuthorizationStatus.notDetermined:
                 locationStatus = "Status not determined"
             default:
                 locationStatus = "Allowed to location Access"
                 shouldIAllow = true
             }
-            NSNotificationCenter.defaultCenter().postNotificationName("LabelHasbeenUpdated", object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "LabelHasbeenUpdated"), object: nil)
             if (shouldIAllow == true) {
                 NSLog("Location to Allowed")
                 // Start location services
@@ -196,23 +196,23 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         userLocation = "\(userLatitude),\(userLongitude)"
         
-        let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
-        let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
+        let baseURL = URL(string: "https://api.forecast.io/forecast/\(apiKey)/")
+        let forecastURL = URL(string: "\(userLocation)", relativeTo:baseURL)
         
         //72.371224,-41.382676 GreenLand (Cold Place!)
         //\(userLocation) (YOUR LOCATION!)
         
         //println(userLocation)
         
-        let sharedSession = NSURLSession.sharedSession()
+        let sharedSession = URLSession.shared
         
-        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+        let downloadTask: URLSessionDownloadTask = sharedSession.downloadTask(with: forecastURL!, completionHandler: { (location: URL?, response: URLResponse?, error: NSError?) -> Void in
             
             
             if (error == nil) {
                 
-                let dataObject = NSData(contentsOfURL: location!)
-                let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
+                let dataObject = try? Data(contentsOf: location!)
+                let weatherDictionary = (try! JSONSerialization.jsonObject(with: dataObject!, options: [])) as! [String: Any]
                 
                 let currentWeather = Current(weatherDictionary: weatherDictionary)
                 let weeklyWeather = Weekly(weatherDictionary: weatherDictionary)
@@ -224,7 +224,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 //println(currentWeather.currentTime!)
                 print(weatherDictionary)
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     
                     //Current outlook
 //                    self.userTemperatureCelsius = true
@@ -258,8 +258,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                         var localNotification:UILocalNotification = UILocalNotification()
                         localNotification.alertAction = "Project RainMan"
                         localNotification.alertBody = "Don't forget your umbrella today!"
-                        localNotification.fireDate = NSDate(timeIntervalSinceNow: 8)
-                        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+                        localNotification.fireDate = Date(timeIntervalSinceNow: 8)
+                        UIApplication.shared.scheduleLocalNotification(localNotification)
                         
                     }
                     
@@ -268,8 +268,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                         var localNotification:UILocalNotification = UILocalNotification()
                         localNotification.alertAction = "Project RainMan"
                         localNotification.alertBody = "It's going to be windy today!"
-                        localNotification.fireDate = NSDate(timeIntervalSinceNow: 8)
-                        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+                        localNotification.fireDate = Date(timeIntervalSinceNow: 8)
+                        UIApplication.shared.scheduleLocalNotification(localNotification)
                         
                     }
                     
@@ -278,8 +278,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                         var localNotification:UILocalNotification = UILocalNotification()
                         localNotification.alertAction = "Project RainMan"
                         localNotification.alertBody = "It's going to be Hot today!"
-                        localNotification.fireDate = NSDate(timeIntervalSinceNow: 8)
-                        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+                        localNotification.fireDate = Date(timeIntervalSinceNow: 8)
+                        UIApplication.shared.scheduleLocalNotification(localNotification)
                         
                     }
                     
@@ -354,20 +354,20 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
                 
             } else {
                 
-                let networkIssueController = UIAlertController(title: "NO API KEY", message: "Hello! Looks like you forgot to add the API KEY on line 79", preferredStyle: .Alert)
-                let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                let networkIssueController = UIAlertController(title: "NO API KEY", message: "Hello! Looks like you forgot to add the API KEY on line 79", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
                 networkIssueController.addAction(okButton)
-                let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                 networkIssueController.addAction(cancelButton)
-                self.presentViewController(networkIssueController, animated: true, completion: nil)
+                self.present(networkIssueController, animated: true, completion: nil)
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     
                     
                 })
             }
             
-        })
+        } as! (URL?, URLResponse?, Error?) -> Void)
         
         downloadTask.resume()
         
@@ -409,7 +409,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         self.weeklyForcastAnimation()
         
-        UIView.animateWithDuration(1.5, animations: {
+        UIView.animate(withDuration: 1.5, animations: {
             self.temperatureLabel.alpha = 1.0
             self.heatIndex.alpha = 1.0
             self.dayOneImage.alpha = 1.0
@@ -446,38 +446,38 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         
         
         //DAILY
-        self.dayZeroTemperatureLowLabel.transform = CGAffineTransformMakeTranslation(-300, 0)
-        self.dayZeroTemperatureHighLabel.transform = CGAffineTransformMakeTranslation(300, 0)
-        self.windBag.transform = CGAffineTransformMakeTranslation(0, -600)
-        self.umbrella.transform = CGAffineTransformMakeTranslation(0, -600)
-        self.rainDrop.transform = CGAffineTransformMakeTranslation(0, -600)
-        self.iconView.transform = CGAffineTransformMakeTranslation(-200, 0)
-        self.temperatureLabel.transform = CGAffineTransformMakeTranslation(300, 0)
-        self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, -200)
-        self.heatIndex.transform = CGAffineTransformMakeTranslation(-350, 0)
+        self.dayZeroTemperatureLowLabel.transform = CGAffineTransform(translationX: -300, y: 0)
+        self.dayZeroTemperatureHighLabel.transform = CGAffineTransform(translationX: 300, y: 0)
+        self.windBag.transform = CGAffineTransform(translationX: 0, y: -600)
+        self.umbrella.transform = CGAffineTransform(translationX: 0, y: -600)
+        self.rainDrop.transform = CGAffineTransform(translationX: 0, y: -600)
+        self.iconView.transform = CGAffineTransform(translationX: -200, y: 0)
+        self.temperatureLabel.transform = CGAffineTransform(translationX: 300, y: 0)
+        self.summaryLabel.transform = CGAffineTransform(translationX: 0, y: -200)
+        self.heatIndex.transform = CGAffineTransform(translationX: -350, y: 0)
         //self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(350,0)
-        self.userLocationLabel.transform = CGAffineTransformMakeTranslation(350, 0)
-        self.degreeButton.transform = CGAffineTransformMakeTranslation(350,0)
-        self.windUILabel.transform = CGAffineTransformMakeTranslation(-350,0)
-        self.humidityUILabel.transform = CGAffineTransformMakeTranslation(350,0)
-        self.degreeButton.transform = CGAffineTransformMakeTranslation(350, 0)
+        self.userLocationLabel.transform = CGAffineTransform(translationX: 350, y: 0)
+        self.degreeButton.transform = CGAffineTransform(translationX: 350,y: 0)
+        self.windUILabel.transform = CGAffineTransform(translationX: -350,y: 0)
+        self.humidityUILabel.transform = CGAffineTransform(translationX: 350,y: 0)
+        self.degreeButton.transform = CGAffineTransform(translationX: 350, y: 0)
         
         
         //WEEKLY
-        self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.dayTwoImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.dayThreeImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.dayFourImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.dayFiveImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 100)
+        self.dayOneImage.transform = CGAffineTransform(translationX: 0, y: 100)
+        self.dayTwoImage.transform = CGAffineTransform(translationX: 0, y: 100)
+        self.dayThreeImage.transform = CGAffineTransform(translationX: 0, y: 100)
+        self.dayFourImage.transform = CGAffineTransform(translationX: 0, y: 100)
+        self.dayFiveImage.transform = CGAffineTransform(translationX: 0, y: 100)
+        self.daySixImage.transform = CGAffineTransform(translationX: 0, y: 100)
         
         //DAILY SPRING ACTION
         
         springWithDelay(0.9, delay: 0.45, animations: {
-            self.userLocationLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.userLocationLabel.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         springWithDelay(0.9, delay: 0.60, animations: {
-            self.degreeButton.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.degreeButton.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         //springWithDelay(0.9, 0.45, {
@@ -485,82 +485,82 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         //})
         
         springWithDelay(0.9, delay: 0.25, animations: {
-            self.windBag.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.windBag.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         springWithDelay(0.9, delay: 0.35, animations: {
-            self.umbrella.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.umbrella.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         springWithDelay(0.9, delay: 0.45, animations: {
-            self.rainDrop.transform = CGAffineTransformMakeTranslation(0, 0)
-        })
-        
-        springWithDelay(0.9, delay: 0.45, animations: {
-            self.iconView.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.rainDrop.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         springWithDelay(0.9, delay: 0.45, animations: {
-            self.temperatureLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.iconView.transform = CGAffineTransform(translationX: 0, y: 0)
+        })
+        
+        springWithDelay(0.9, delay: 0.45, animations: {
+            self.temperatureLabel.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         springWithDelay(0.9, delay: 0.60, animations: {
-            self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.summaryLabel.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         springWithDelay(0.9, delay: 0.45, animations: {
-            self.heatIndex.transform = CGAffineTransformMakeTranslation(0, 0)
-        })
-        
-        springWithDelay(0.9, delay: 0.45, animations: {
-            self.dayZeroTemperatureLowLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.heatIndex.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         springWithDelay(0.9, delay: 0.45, animations: {
-            self.dayZeroTemperatureHighLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.dayZeroTemperatureLowLabel.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         springWithDelay(0.9, delay: 0.45, animations: {
-            self.userLocationLabel.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.dayZeroTemperatureHighLabel.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         springWithDelay(0.9, delay: 0.45, animations: {
-            self.windUILabel.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.userLocationLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+        })
+        
+        springWithDelay(0.9, delay: 0.45, animations: {
+            self.windUILabel.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         
         springWithDelay(0.9, delay: 0.45, animations: {
-            self.humidityUILabel.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.humidityUILabel.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         
         //WEEKLY FORCAST SPRING ACTION
         springWithDelay(0.9, delay: 0.25, animations: {
-            self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.dayOneImage.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         springWithDelay(0.9, delay: 0.35, animations: {
-            self.dayTwoImage.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.dayTwoImage.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         springWithDelay(0.9, delay: 0.45, animations: {
-            self.dayThreeImage.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.dayThreeImage.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         springWithDelay(0.9, delay: 0.55, animations: {
-            self.dayFourImage.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.dayFourImage.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         springWithDelay(0.9, delay: 0.65, animations: {
-            self.dayFiveImage.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.dayFiveImage.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         
         springWithDelay(0.9, delay: 0.75, animations: {
-            self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.daySixImage.transform = CGAffineTransform(translationX: 0, y: 0)
             
         })
         
     }
     
     
-    @IBAction func degreeButtonPressed(sender: AnyObject) {
+    @IBAction func degreeButtonPressed(_ sender: AnyObject) {
       
       print("TemperatureMode \(userTemperatureCelsius)");
         
@@ -572,12 +572,12 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     func swooshsound() {
         
-        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("swoosh", ofType: "wav")!)
+        let alertSound = URL(fileURLWithPath: Bundle.main.path(forResource: "swoosh", ofType: "wav")!)
         print(alertSound)
         
         var error:NSError?
         do {
-            audioPlayer = try AVAudioPlayer(contentsOfURL: alertSound)
+            audioPlayer = try AVAudioPlayer(contentsOf: alertSound)
         } catch var error1 as NSError {
             error = error1
             
@@ -591,10 +591,10 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "infotab"{
-            let _ = segue.destinationViewController as! InfoTabViewController
+            let _ = segue.destination as! InfoTabViewController
             
         }
         

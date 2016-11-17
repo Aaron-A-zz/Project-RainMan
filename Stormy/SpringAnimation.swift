@@ -13,9 +13,9 @@ var delay = 0.0
 var damping = 0.7
 var velocity = 0.7
 
-func spring(duration: NSTimeInterval, animations: (() -> Void)!) {
+func spring(_ duration: TimeInterval, animations: (() -> Void)!) {
     
-    UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [], animations: {
+    UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [], animations: {
         
         animations()
         
@@ -24,9 +24,9 @@ func spring(duration: NSTimeInterval, animations: (() -> Void)!) {
     })
 }
 
-func springWithDelay(duration: NSTimeInterval, delay: NSTimeInterval, animations: (() -> Void)!) {
+func springWithDelay(_ duration: TimeInterval, delay: TimeInterval, animations: (() -> Void)!) {
     
-    UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
+    UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
         
         animations()
         
@@ -35,17 +35,17 @@ func springWithDelay(duration: NSTimeInterval, delay: NSTimeInterval, animations
     })
 }
 
-func slideUp(duration: NSTimeInterval, animations: (() -> Void)!) {
-    UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
+func slideUp(_ duration: TimeInterval, animations: (() -> Void)!) {
+    UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
         
         animations()
         
         }, completion: nil)
 }
 
-func springWithCompletion(duration: NSTimeInterval, animations: (() -> Void)!, completion: ((Bool) -> Void)!) {
+func springWithCompletion(_ duration: TimeInterval, animations: (() -> Void)!, completion: ((Bool) -> Void)!) {
     
-    UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [], animations: {
+    UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [], animations: {
         
         animations()
         
@@ -54,46 +54,46 @@ func springWithCompletion(duration: NSTimeInterval, animations: (() -> Void)!, c
     })
 }
 
-func springScaleFrom (view: UIView, x: CGFloat, y: CGFloat, scaleX: CGFloat, scaleY: CGFloat) {
-    let translation = CGAffineTransformMakeTranslation(x, y)
-    let scale = CGAffineTransformMakeScale(scaleX, scaleY)
-    view.transform = CGAffineTransformConcat(translation, scale)
+func springScaleFrom (_ view: UIView, x: CGFloat, y: CGFloat, scaleX: CGFloat, scaleY: CGFloat) {
+    let translation = CGAffineTransform(translationX: x, y: y)
+    let scale = CGAffineTransform(scaleX: scaleX, y: scaleY)
+    view.transform = translation.concatenating(scale)
     
-    UIView.animateWithDuration(0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [], animations: {
+    UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [], animations: {
         
-        let translation = CGAffineTransformMakeTranslation(0, 0)
-        let scale = CGAffineTransformMakeScale(1, 1)
-        view.transform = CGAffineTransformConcat(translation, scale)
+        let translation = CGAffineTransform(translationX: 0, y: 0)
+        let scale = CGAffineTransform(scaleX: 1, y: 1)
+        view.transform = translation.concatenating(scale)
         
         }, completion: nil)
 }
 
-func springScaleTo (view: UIView, x: CGFloat, y: CGFloat, scaleX: CGFloat, scaleY: CGFloat) {
-    let translation = CGAffineTransformMakeTranslation(0, 0)
-    let scale = CGAffineTransformMakeScale(1, 1)
-    view.transform = CGAffineTransformConcat(translation, scale)
+func springScaleTo (_ view: UIView, x: CGFloat, y: CGFloat, scaleX: CGFloat, scaleY: CGFloat) {
+    let translation = CGAffineTransform(translationX: 0, y: 0)
+    let scale = CGAffineTransform(scaleX: 1, y: 1)
+    view.transform = translation.concatenating(scale)
     
-    UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [], animations: {
+    UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [], animations: {
         
-        let translation = CGAffineTransformMakeTranslation(x, y)
-        let scale = CGAffineTransformMakeScale(scaleX, scaleY)
-        view.transform = CGAffineTransformConcat(translation, scale)
+        let translation = CGAffineTransform(translationX: x, y: y)
+        let scale = CGAffineTransform(scaleX: scaleX, y: scaleY)
+        view.transform = translation.concatenating(scale)
         
         }, completion: nil)
 }
 
-func popoverTopRight(view: UIView) {
-    view.hidden = false
-    let translate = CGAffineTransformMakeTranslation(200, -200)
-    let scale = CGAffineTransformMakeScale(0.3, 0.3)
+func popoverTopRight(_ view: UIView) {
+    view.isHidden = false
+    let translate = CGAffineTransform(translationX: 200, y: -200)
+    let scale = CGAffineTransform(scaleX: 0.3, y: 0.3)
     view.alpha = 0
-    view.transform = CGAffineTransformConcat(translate, scale)
+    view.transform = translate.concatenating(scale)
     
-    UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: [], animations: {
+    UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: [], animations: {
         
-        let translate = CGAffineTransformMakeTranslation(0, 0)
-        let scale = CGAffineTransformMakeScale(1, 1)
-        view.transform = CGAffineTransformConcat(translate, scale)
+        let translate = CGAffineTransform(translationX: 0, y: 0)
+        let scale = CGAffineTransform(scaleX: 1, y: 1)
+        view.transform = translate.concatenating(scale)
         view.alpha = 1
         
         }, completion: nil)
